@@ -8,22 +8,30 @@ const targetExtensions = ['.html', '.css', '.js'];
 
 const absoluteImageFolder = path.resolve(imageFolder);
 
-// 1. Ensure the central repository asset folder exists natively
+// 1. Ensure the local repository asset folder exists natively
 if (!fs.existsSync(imageFolder)) {
     fs.mkdirSync(imageFolder, { recursive: true });
 }
 
 console.log("📦 Launching absolute asset crawler and local path alignment engine...");
 
-// Advanced boundary lookahead regular expression built for GoDaddy image server string arrays
-const godaddyPattern = /(?:https?:)?\/\/[:a-zA-Z0-9._-]*wsimg\.com\/isteam\/ip\/.*?(?=\s|["\'\>]|,(?:\s|\$))/gi;
+// FIX: Matches up to the image file extension, ignoring trailing query strings or resizing arrays completely
+const godaddyPattern = /(?:https?:)?\/\/[:a-zA-Z0-9._-]*wsimg\.com\/isteam\/ip\/.*?\.(?:jpg|jpeg|png|gif|ico|JPG|JPEG|PNG|GIF|ICO)/gi;
 
 function downloadImage(url, destPath) {
     return new Promise((resolve, reject) => {
         const file = fs.createWriteStream(destPath);
         const requestUrl = url.startsWith('http') ? url : `https:${url}`;
         
-        https.get(requestUrl, (response) => {
+        // Add fake browser headers to prevent GoDaddy server blocks
+        const options = {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8'
+            }
+        };
+
+        https.get(requestUrl, options, (response) => {
             if (response.statusCode !== 200) {
                 reject(new Error(`Server Status: ${response.statusCode}`));
                 return;
@@ -44,7 +52,6 @@ async function crawlAndLocalize(dir) {
         const stat = fs.statSync(fullPath);
         
         if (stat.isDirectory()) {
-            // Ignore system or asset output targets to prevent recursive loops
             if (['.git', '.github', 'node_modules', 'images'].includes(item)) continue;
             await crawlAndLocalize(fullPath);
         } else {
@@ -57,9 +64,9 @@ async function crawlAndLocalize(dir) {
                     const matches = content.match(godaddyPattern);
                     if (matches) {
                         for (const match of [...new Set(matches)]) {
-                            // Extract root asset fragment by separating structural formatting parameters
-                            const urlCleanParts = match.trim().split('/:')[0].split('?')[0];
-                            const rawFilename = path.basename(urlCleanParts);
+                            // Isolate the clean URL and extract the true filename
+                            const cleanUrl = match.trim();
+                            const rawFilename = path.basename(cleanUrl);
                             
                             if (!rawFilename || !rawFilename.includes('.')) continue;
 
@@ -67,11 +74,11 @@ async function crawlAndLocalize(dir) {
                             const localDestination = path.join(imageFolder, decodedFilename);
 
                             if (!fs.existsSync(localDestination)) {
-                                console.log(`📥 Downloading Asset to Repo: ${decodedFilename}`);
+                                console.log(`📥 Downloading Asset: ${decodedFilename}`);
                                 try {
-                                    await downloadImage(match.trim(), localDestination);
+                                    await downloadImage(cleanUrl, localDestination);
                                 } catch (err) {
-                                    console.log(`⚠️ Download skipped for: ${decodedFilename}`);
+                                    console.log(`⚠️ Download failed for: ${decodedFilename} (${err.message})`);
                                 }
                             }
                         }
@@ -87,8 +94,8 @@ async function crawlAndLocalize(dir) {
                         }
 
                         content = content.replace(godaddyPattern, (urlMatch) => {
-                            const urlCleanParts = urlMatch.trim().split('/:')[0].split('?')[0];
-                            const rawFile = path.basename(urlCleanParts);
+                            const cleanUrl = urlMatch.trim();
+                            const rawFile = path.basename(cleanUrl);
                             const cleanFilename = decodeURIComponent(rawFile).replace(/[^a-zA-Z0-9.-]/g, '_');
                             return `${relativeImagesPath}/${cleanFilename}`;
                         });
