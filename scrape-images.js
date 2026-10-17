@@ -8,14 +8,15 @@ const extensions = ['.html', '.css', '.js'];
 
 const absoluteImageFolder = path.resolve(imageFolder);
 
+// Ensure the local asset directory exists natively
 if (!fs.existsSync(imageFolder)) {
     fs.mkdirSync(imageFolder, { recursive: true });
 }
 
 console.log("📦 Launching absolute asset crawler and local path alignment engine...");
 
-// Clean regular expression matching GoDaddy's CDN pathways
-const godaddyPattern = /(?:https?:)?\/\/[:a-zA-Z0-9._-]*wsimg\.com\/isteam\/ip\/[^\s"\'\>,\)]+/gi;
+// FIX: Custom lookahead regex that captures commas inside the URL but stops at structural boundaries (spaces, quotes, or separating commas)
+const godaddyPattern = /(?:https?:)?\/\/[:a-zA-Z0-9._-]*wsimg\.com\/isteam\/ip\/.*?(?=\s|["\'\>]|,(?:\s|\$))/gi;
 
 function downloadImage(url, destPath) {
     return new Promise((resolve, reject) => {
@@ -53,19 +54,18 @@ async function crawlAndLocalize(dir) {
                 const matches = content.match(godaddyPattern);
                 if (matches) {
                     for (const match of [...new Set(matches)]) {
-                        // FIX: Added bracket indexes [0] to safely strip URL parameters without crashes
-                        let baseCleanUrl = match.trim().split('/:')[0].split('?')[0];
-                        
-                        const rawFilename = path.basename(baseCleanUrl);
+                        // Safely split step-by-step to isolate the true file path segment
+                        const urlStrippedOfParams = match.trim().split('/:')[0].split('?')[0];
+                        const rawFilename = path.basename(urlStrippedOfParams);
                         const decodedFilename = decodeURIComponent(rawFilename).replace(/[^a-zA-Z0-9.-]/g, '_');
                         const localDestination = path.join(imageFolder, decodedFilename);
 
                         if (!fs.existsSync(localDestination)) {
                             console.log(`📥 Downloading Asset: ${decodedFilename}`);
                             try {
-                                await downloadImage(baseCleanUrl, localDestination);
+                                await downloadImage(match.trim(), localDestination);
                             } catch (err) {
-                                console.log(`⚠️ Download blocked for: ${decodedFilename}`);
+                                console.log(`⚠️ Download blocked for: ${decodedFilename} (${err.message})`);
                             }
                         }
                     }
@@ -81,9 +81,8 @@ async function crawlAndLocalize(dir) {
                     }
 
                     content = content.replace(godaddyPattern, (urlMatch) => {
-                        // FIX: Safely unpack indexes here as well to isolate clean names
-                        let baseCleanUrl = urlMatch.trim().split('/:')[0].split('?')[0];
-                        const rawFile = path.basename(baseCleanUrl);
+                        const urlStrippedOfParams = urlMatch.trim().split('/:')[0].split('?')[0];
+                        const rawFile = path.basename(urlStrippedOfParams);
                         const cleanFilename = decodeURIComponent(rawFile).replace(/[^a-zA-Z0-9.-]/g, '_');
                         return `${relativeImagesPath}/${cleanFilename}`;
                     });
