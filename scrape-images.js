@@ -8,22 +8,22 @@ const targetExtensions = ['.html', '.css', '.js'];
 
 const absoluteImageFolder = path.resolve(imageFolder);
 
-// 1. Ensure the local repository asset folder exists natively
+// Ensure the local target folder exists natively
 if (!fs.existsSync(imageFolder)) {
     fs.mkdirSync(imageFolder, { recursive: true });
 }
 
 console.log("📦 Launching absolute asset crawler and local path alignment engine...");
 
-// FIX: Matches up to the image file extension, ignoring trailing query strings or resizing arrays completely
-const godaddyPattern = /(?:https?:)?\/\/[:a-zA-Z0-9._-]*wsimg\.com\/isteam\/ip\/.*?\.(?:jpg|jpeg|png|gif|ico|JPG|JPEG|PNG|GIF|ICO)/gi;
+// Advanced boundary-proof regular expression tailored exactly for GoDaddy wsimg paths
+const godaddyPattern = /(?:https?:)?\/\/[:a-zA-Z0-9._-]*wsimg\.com\/isteam\/ip\/[^\s"\'\>,\)]+/gi;
 
+// Precision download engine using the full unedited URL to bypass GoDaddy server rejections
 function downloadImage(url, destPath) {
     return new Promise((resolve, reject) => {
         const file = fs.createWriteStream(destPath);
         const requestUrl = url.startsWith('http') ? url : `https:${url}`;
         
-        // Add fake browser headers to prevent GoDaddy server blocks
         const options = {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -33,7 +33,7 @@ function downloadImage(url, destPath) {
 
         https.get(requestUrl, options, (response) => {
             if (response.statusCode !== 200) {
-                reject(new Error(`Server Status: ${response.statusCode}`));
+                reject(new Error(`Server Status Code: ${response.statusCode}`));
                 return;
             }
             response.pipe(file);
@@ -64,10 +64,13 @@ async function crawlAndLocalize(dir) {
                     const matches = content.match(godaddyPattern);
                     if (matches) {
                         for (const match of [...new Set(matches)]) {
-                            // Isolate the clean URL and extract the true filename
-                            const cleanUrl = match.trim();
-                            const rawFilename = path.basename(cleanUrl);
+                            const fullRawUrl = match.trim();
                             
+                            // FIX: Clean string split parsing without chained array bugs
+                            const firstSplit = fullRawUrl.split('/:');
+                            const cleanUrlSegment = firstSplit[0].split('?')[0];
+                            
+                            const rawFilename = path.basename(cleanUrlSegment);
                             if (!rawFilename || !rawFilename.includes('.')) continue;
 
                             const decodedFilename = decodeURIComponent(rawFilename).replace(/[^a-zA-Z0-9.-]/g, '_');
@@ -76,7 +79,8 @@ async function crawlAndLocalize(dir) {
                             if (!fs.existsSync(localDestination)) {
                                 console.log(`📥 Downloading Asset: ${decodedFilename}`);
                                 try {
-                                    await downloadImage(cleanUrl, localDestination);
+                                    // Crucial: Downloading using the full raw URL with sizing parameters intact
+                                    await downloadImage(fullRawUrl, localDestination);
                                 } catch (err) {
                                     console.log(`⚠️ Download failed for: ${decodedFilename} (${err.message})`);
                                 }
@@ -84,7 +88,7 @@ async function crawlAndLocalize(dir) {
                         }
                     }
 
-                    // Rewrite paths inside the active tracking file
+                    // Rewrite paths inside the files dynamically based on folder tree depth
                     if (godaddyPattern.test(content)) {
                         const currentFileDir = path.dirname(path.resolve(fullPath));
                         let relativeImagesPath = path.relative(currentFileDir, absoluteImageFolder).replace(/\\/g, '/');
@@ -94,8 +98,11 @@ async function crawlAndLocalize(dir) {
                         }
 
                         content = content.replace(godaddyPattern, (urlMatch) => {
-                            const cleanUrl = urlMatch.trim();
-                            const rawFile = path.basename(cleanUrl);
+                            const fullRawUrl = urlMatch.trim();
+                            const firstSplit = fullRawUrl.split('/:');
+                            const cleanUrlSegment = firstSplit[0].split('?')[0];
+                            
+                            const rawFile = path.basename(cleanUrlSegment);
                             const cleanFilename = decodeURIComponent(rawFile).replace(/[^a-zA-Z0-9.-]/g, '_');
                             return `${relativeImagesPath}/${cleanFilename}`;
                         });
@@ -104,7 +111,7 @@ async function crawlAndLocalize(dir) {
 
                     if (wasModified) {
                         fs.writeFileSync(fullPath, content, 'utf8');
-                        console.log(`✨ Re-aligned relative references inside: ${fullPath}`);
+                        console.log(`✨ Re-aligned relative layout references inside: ${fullPath}`);
                     }
                 } catch (err) {
                     console.error(`❌ Error parsing file ${fullPath}: ${err.message}`);
