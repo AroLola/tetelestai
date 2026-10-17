@@ -3,19 +3,19 @@ const path = require('path');
 const https = require('https');
 
 const targetDir = './';
-const imageFolder = './images';
-const extensions = ['.html', '.css']; // Safe file scope to avoid breaking JS navigation scripts
+const imageFolder = './images'; // This creates and targets the exact folder named "images"
+const extensions = ['.html', '.css'];
 
 const absoluteImageFolder = path.resolve(imageFolder);
 
-// Ensure the local asset directory exists natively
+// 1. Ensure the local asset directory exists natively
 if (!fs.existsSync(imageFolder)) {
     fs.mkdirSync(imageFolder, { recursive: true });
 }
 
 console.log("📦 Launching custom GoDaddy path alignment engine...");
 
-// Tailored Regex matching your exact wsimg.com link structures (capturing the sizing rules as well)
+// Tailored Regex matching your exact wsimg.com link structures
 const godaddyPattern = /(?:https?:)?\/\/[:a-zA-Z0-9._-]*wsimg\.com\/isteam\/ip\/[^\s"\'\>]+?\.(?:jpg|jpeg|png|gif|ico|JPG|JPEG|PNG|GIF|ICO)(?:\/:\/[^\s"\'\>]+)?/gi;
 
 function downloadImage(url, destPath) {
@@ -54,8 +54,9 @@ async function crawlAndLocalize(dir) {
                 const matches = content.match(godaddyPattern);
                 if (matches) {
                     for (const match of [...new Set(matches)]) {
-                        // Strips down "/:/rs=..." layout parameters safely
-                        let cleanUrl = match.split('/:')[0].split('?')[0];
+                        // FIX: Pull index [0] to extract the base URL string safely
+                        let parts = match.trim().split('/:');
+                        let cleanUrl = parts[0].split('?')[0];
                         
                         const rawFilename = path.basename(cleanUrl);
                         const decodedFilename = decodeURIComponent(rawFilename);
@@ -82,7 +83,10 @@ async function crawlAndLocalize(dir) {
                     }
 
                     content = content.replace(godaddyPattern, (urlMatch) => {
-                        let cleanUrl = urlMatch.split('/:')[0].split('?')[0];
+                        // FIX: Pull index [0] here as well to isolate clean URLs
+                        let parts = urlMatch.trim().split('/:');
+                        let cleanUrl = parts[0].split('?')[0];
+                        
                         const rawFile = path.basename(cleanUrl);
                         return `${relativeImagesPath}/${decodeURIComponent(rawFile)}`;
                     });
