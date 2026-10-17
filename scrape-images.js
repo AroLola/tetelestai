@@ -1,98 +1,106 @@
  const fs = require('fs');
 const path = require('path');
-const axios = require('axios');
-const cheerio = require('cheerio');
+const https = require('https');
 
-// --- CONFIGURATION ---
-const TARGET_SITE = 'https://tetelestai.services'; // Your live site URL
-const IMAGE_OUTPUT_DIR = './images';              // Local repo directory
-// ---------------------
+const targetDir = './';
+const imageFolder = './images';
+const extensions = ['.html', '.css']; // Safe file scope to avoid breaking JS navigation scripts
 
-// Ensure local image directory exists natively
-if (!fs.existsSync(IMAGE_OUTPUT_DIR)) {
-    fs.mkdirSync(IMAGE_OUTPUT_DIR, { recursive: true });
+const absoluteImageFolder = path.resolve(imageFolder);
+
+// Ensure the local asset directory exists natively
+if (!fs.existsSync(imageFolder)) {
+    fs.mkdirSync(imageFolder, { recursive: true });
 }
 
-// Safe utility to asynchronously download graphic binaries
-async function downloadImage(url, filepath) {
-    try {
-        const response = await axios({
-            url,
-            method: 'GET',
-            responseType: 'stream',
-            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
-        });
+console.log("📦 Launching custom GoDaddy path alignment engine...");
 
-        return new Promise((resolve, reject) => {
-            const writer = fs.createWriteStream(filepath);
-            response.data.pipe(writer);
-            writer.on('finish', resolve);
-            writer.on('error', reject);
-        });
-    } catch (error) {
-        console.error(`❌ Failed to fetch binary for: ${url} (${error.message})`);
-        return false;
-    }
-}
+// Tailored Regex matching your exact wsimg.com link structures (capturing the sizing rules as well)
+const godaddyPattern = /(?:https?:)?\/\/[:a-zA-Z0-9._-]*wsimg\.com\/isteam\/ip\/[^\s"\'\>]+?\.(?:jpg|jpeg|png|gif|ico|JPG|JPEG|PNG|GIF|ICO)(?:\/:\/[^\s"\'\>]+)?/gi;
 
-async function startScrape() {
-    try {
-        console.log(`🌐 Fetching live layouts from: ${TARGET_SITE}...`);
-        const response = await axios.get(TARGET_SITE, {
-            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
-        });
-
-        // Load HTML layout structure into Cheerio DOM tree parser
-        const \$ = cheerio.load(response.data);
-        const imageUrls = new Set();
-
-        // 1. Gather all basic structural img tags
-        \$('img').each((i, el) => {
-            const src = (el).attr('src') || (el).attr('data-src');
-            if (src) imageUrls.add(src);
-        });
-
-        // 2. Gather background imagery variations, icons, and slider assets
-        \$('[style*="background"]').each((i, el) => {
-            const style = \$(el).attr('style');
-            const match = style.match(/url\(['"]?([^'"]+)['"]?\)/i);
-            if (match && match[1]) imageUrls.add(match[1]);
-        });
-
-        console.log(`📦 Found ${imageUrls.size} layout assets to convert.`);
-
-        for (let imgUrl of imageUrls) {
-            // FIX: Trim query resizing variables safely
-            let cleanUrl = imgUrl.trim().split('?')[0].split('/:')[0];
-
-            // Resolve protocol relative paths (e.g., //wsimg.com -> https://wsimg.com)
-            if (cleanUrl.startsWith('//')) {
-                cleanUrl = `https:${cleanUrl}`;
-            } else if (cleanUrl.startsWith('/')) {
-                cleanUrl = `${TARGET_SITE}${cleanUrl}`;
+function downloadImage(url, destPath) {
+    return new Promise((resolve, reject) => {
+        const file = fs.createWriteStream(destPath);
+        const requestUrl = url.startsWith('http') ? url : `https:${url}`;
+        
+        https.get(requestUrl, (response) => {
+            if (response.statusCode !== 200) {
+                reject(new Error(`Server Error: Status ${response.statusCode}`));
+                return;
             }
+            response.pipe(file);
+            file.on('finish', () => file.close(resolve));
+        }).on('error', (err) => {
+            fs.unlink(destPath, () => reject(err));
+        });
+    });
+}
 
+async function crawlAndLocalize(dir) {
+    const items = fs.readdirSync(dir);
+    
+    for (const item of items) {
+        const fullPath = path.join(dir, item);
+        const stat = fs.statSync(fullPath);
+        
+        if (stat.isDirectory()) {
+            if (['.git', '.github', 'node_modules', 'images'].includes(item)) continue;
+            await crawlAndLocalize(fullPath);
+        } else if (extensions.includes(path.extname(item).toLowerCase())) {
             try {
-                const urlObj = new URL(cleanUrl);
-                const rawFilename = path.basename(urlObj.pathname);
-                
-                // Skip tracking tags or empty text file fragments
-                if (!rawFilename || !rawFilename.includes('.')) continue;
+                let content = fs.readFileSync(fullPath, 'utf8');
+                let wasModified = false;
 
-                const decodedFilename = decodeURIComponent(rawFilename);
-                const localDestination = path.join(IMAGE_OUTPUT_DIR, decodedFilename);
+                const matches = content.match(godaddyPattern);
+                if (matches) {
+                    for (const match of [...new Set(matches)]) {
+                        // Strips down "/:/rs=..." layout parameters safely
+                        let cleanUrl = match.split('/:')[0].split('?')[0];
+                        
+                        const rawFilename = path.basename(cleanUrl);
+                        const decodedFilename = decodeURIComponent(rawFilename);
+                        const localDestination = path.join(imageFolder, decodedFilename);
 
-                console.log(`📥 Localizing: ${decodedFilename}`);
-                await downloadImage(cleanUrl, localDestination);
-            } catch (urlError) {
-                console.error(`⚠️ Could not parse URL asset: ${cleanUrl}`);
+                        if (!fs.existsSync(localDestination)) {
+                            console.log(`📥 Downloading Asset: ${decodedFilename}`);
+                            try {
+                                await downloadImage(cleanUrl, localDestination);
+                            } catch (err) {
+                                console.log(`⚠️ Download blocked for: ${decodedFilename}`);
+                            }
+                        }
+                    }
+                }
+
+                // Rewrite the external paths inside your file layout 
+                if (godaddyPattern.test(content)) {
+                    const currentFileDir = path.dirname(path.resolve(fullPath));
+                    let relativeImagesPath = path.relative(currentFileDir, absoluteImageFolder).replace(/\\/g, '/');
+                    
+                    if (!relativeImagesPath.startsWith('.')) {
+                        relativeImagesPath = './' + relativeImagesPath;
+                    }
+
+                    content = content.replace(godaddyPattern, (urlMatch) => {
+                        let cleanUrl = urlMatch.split('/:')[0].split('?')[0];
+                        const rawFile = path.basename(cleanUrl);
+                        return `${relativeImagesPath}/${decodeURIComponent(rawFile)}`;
+                    });
+                    wasModified = true;
+                }
+
+                if (wasModified) {
+                    fs.writeFileSync(fullPath, content, 'utf8');
+                    console.log(`✨ Re-aligned relative layouts inside: ${fullPath}`);
+                }
+            } catch (err) {
+                console.error(`❌ Error parsing ${fullPath}: ${err.message}`);
             }
         }
-
-        console.log('\n🎉 Asset extraction loop finished successfully! Check your ./images folder.');
-    } catch (err) {
-        console.error(`💥 Critical failure parsing site core: ${err.message}`);
     }
 }
 
-startScrape();
+(async () => {
+    await crawlAndLocalize(targetDir);
+    console.log("🎉 All platform assets have been successfully converted and localized!");
+})();
