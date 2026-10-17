@@ -1,4 +1,4 @@
-const fs = require('fs');
+ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 const cheerio = require('cheerio');
@@ -62,7 +62,7 @@ async function startScrape() {
         console.log(`📦 Found ${imageUrls.size} layout assets to convert.`);
 
         for (let imgUrl of imageUrls) {
-            // Trim query resizing variables (?rs=w:400) or weird extensions from the URL endpoint
+            // FIX: Trim query resizing variables safely
             let cleanUrl = imgUrl.trim().split('?')[0].split('/:')[0];
 
             // Resolve protocol relative paths (e.g., //wsimg.com -> https://wsimg.com)
