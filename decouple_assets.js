@@ -6,6 +6,9 @@ const targetDir = './';
 const imageFolder = './images';
 const extensions = ['.html', '.js', '.css'];
 
+// Resolve absolute path for accurate relative matching later
+const absoluteImageFolder = path.resolve(imageFolder);
+
 // 1. Ensure the local asset directory exists natively
 if (!fs.existsSync(imageFolder)) {
     fs.mkdirSync(imageFolder, { recursive: true });
@@ -88,10 +91,18 @@ async function crawlAndLocalize(dir) {
                 // D. Rewrite all external paths to uniform local repository coordinates
                 const replacePattern = /(?:https?:)?\/\/[:a-zA-Z0-9._-]*wsimg\.com\/isteam\/ip\/[a-f0-9-]+\/[a-zA-Z0-9%._-]+\.(?:jpg|jpeg|png|gif|ico|JPG|JPEG|PNG|GIF|ICO)(?:\/[^\s"\'\>]+)?/gi;
                 if (replacePattern.test(content)) {
+                    // Compute accurate relative directory path from current file location to the central image folder
+                    const currentFileDir = path.dirname(path.resolve(fullPath));
+                    let relativeImagesPath = path.relative(currentFileDir, absoluteImageFolder).replace(/\\/g, '/');
+                    
+                    if (!relativeImagesPath.startsWith('.')) {
+                        relativeImagesPath = './' + relativeImagesPath;
+                    }
+
                     content = content.replace(replacePattern, (urlMatch) => {
                         const cleanUrl = urlMatch.split('?')[0].split('/:')[0];
                         const rawFile = path.basename(cleanUrl);
-                        return `./images/${decodeURIComponent(rawFile)}`;
+                        return `${relativeImagesPath}/${decodeURIComponent(rawFile)}`;
                     });
                     wasModified = true;
                 }
@@ -109,5 +120,6 @@ async function crawlAndLocalize(dir) {
 
 (async () => {
     await crawlAndLocalize(targetDir);
-    print("🎉 All platform assets have been successfully converted and localized!");
+    // FIX: Swapped print() for console.log()
+    console.log("🎉 All platform assets have been successfully converted and localized!");
 })();
