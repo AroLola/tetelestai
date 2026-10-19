@@ -347,52 +347,40 @@ if ('serviceWorker' in navigator) {
 
   <div data-ux="GridCell" class="x-el x-el-div c1-1 c1-2 c1-7g c1-7n c1-7o c1-9e c1-1c c1-3e c1-7q c1-3g c1-7r c1-b c1-c c1-7s c1-7t c1-7u c1-7v c1-d c1-9f c1-9g c1-e c1-f c1-g"><div data-ux="Block" data-aid="CONTACT_INFO_CONTAINER_REND" class="x-el x-el-div c1-1 c1-2 c1-1r c1-9w c1-b c1-c c1-9x c1-7k c1-d c1-e c1-f c1-g"><div data-ux="Block" class="x-el x-el-div c1-1 c1-2 c1-9y c1-b c1-c c1-d c1-e c1-f c1-g"><h4 role="heading" aria-level="4" data-ux="ContentHeading" data-aid="CONTACT_INTRO_HEADING_REND" data-typography="HeadingDelta" class="x-el x-el-h4 c1-9h c1-2 c1-1m c1-1n c1-82 c1-4i c1-4j c1-1p c1-85 c1-b c1-4b c1-1u c1-2r c1-4c c1-4d c1-4e c1-4f"> </h4><div data-ux="ContentText" data-aid="CONTACT_INTRO_DESC_REND" data-typography="BodyAlpha" class="x-el c1-1 c1-2 c1-1m c1-1n c1-1o c1-1p c1-85 c1-1q c1-9z c1-a0 c1-a1 c1-a2 c1-a3 c1-a4 c1-a5 c1-a6 c1-a7 c1-a8 c1-a9 c1-aa c1-ab c1-ac c1-ad c1-ae c1-af c1-ag c1-ah c1-ai c1-aj c1-ak c1-al c1-am c1-an c1-ao c1-ap c1-aq c1-ar c1-as c1-at c1-au c1-b c1-c c1-1u c1-9j c1-av c1-aw c1-ax c1-d c1-e c1-f c1-g x-rt"><p style="margin:0"><span>&nbsp;</span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p></div></div><div data-ux="Block" class="x-el x-el-div c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><p data-ux="ContentText" data-aid="CONTACT_INFO_ADDRESS_REND" data-typography="BodyAlpha" class="x-el x-el-p c1-1 c1-2 c1-1m c1-1n c1-1o c1-1p c1-85 c1-1q c1-b c1-c c1-1u c1-9j c1-av c1-aw c1-ax c1-d c1-e c1-f c1-g">Tetelestai International HQ, Texas, USA</p></div></div></div></div></div></div></section>
   
-<!-- Restored static structural DOM container to completely fix the layout crash -->
-<div data-ux="MapBanner" class="x-el x-el-div" style="display: block !important; position: relative !important; min-height: 450px !important; height: auto !important; overflow: visible !important; width: 100% !important; max-width: 100% !important;">
-  <div data-ux="Element" id="bs-13" style="display: block !important; overflow: visible !important; width: 100% !important;">
-    <span data-ux="Element" style="display: block !important; overflow: visible !important; width: 100% !important;">
-      <div data-ux="Block" style="display: block !important; position: relative !important; min-height: 450px !important; height: auto !important; overflow: visible !important; width: 100% !important;">
-        
-        <!-- REQUIRED LAYOUT INJECTION NODE -->
-        <div data-aid="CONTACT_MAP_REND" style="position: relative !important; display: block !important; width: 100% !important; max-width: 100% !important; height: 450px !important; overflow: visible !important; margin: 0 auto !important; z-index: 10 !important;">
-          
-          <!-- PURE HTML ANCHOR OVERLAY - Bypasses all broken JS engines completely -->
-          <a 
-            href="https://google.com" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            style="display: block !important; width: 100% !important; height: 450px !important; border-radius: 8px !important; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important; overflow: hidden !important; position: relative !important; text-decoration: none !important; cursor: pointer !important; background: #e5e3df url('https://googleapis.com') no-repeat center !important; background-size: cover !important;"
-            title="Click to view Carrollton, TX Map Directions">
-            
-            <!-- High-contrast call to action banner overlay text block -->
-            <div style="position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; background-color: #040430 !important; color: #ffffff !important; padding: 16px 36px !important; font-family: Arial, sans-serif !important; font-size: 14px !important; font-weight: bold !important; border-radius: 30px !important; box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; white-space: nowrap !important; text-align: center !important; z-index: 99999 !important;">
-              🗺️ Open Carrollton, TX Map Directions
-            </div>
+ <!-- Structural Container Fix for Tetelestai Map Block -->
+<div style="display: block !important; position: relative !important; width: 100% !important; min-height: 450px !important; margin: 20px 0 !important; clear: both !important; overflow: visible !important;">
+  
+  <!-- RAW HTML HYPERLINK - Cross-origin safe, cannot be blocked by script worker engines -->
+  <a 
+    href="https://google.com" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    style="display: block !important; width: 100% !important; height: 450px !important; border-radius: 8px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important; overflow: hidden !important; position: relative !important; text-decoration: none !important; cursor: pointer !important; background: #e5e3df url('https://googleapis.com') no-repeat center !important; background-size: cover !important;">
+    
+    <!-- Visual Fallback Indicator Card Overlay -->
+    <div style="position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background-color: rgba(229, 227, 223, 0.4) !important;"></div>
 
-          </a>
+    <!-- High-Contrast Interactive Call-To-Action Button -->
+    <div style="position: absolute !important; top: 50% !important; left: 50% !important; transform: translate(-50%, -50%) !important; background-color: #040430 !important; color: #ffffff !important; padding: 18px 40px !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important; font-size: 15px !important; font-weight: bold !important; border-radius: 50px !important; box-shadow: 0 6px 20px rgba(0,0,0,0.5) !important; text-transform: uppercase !important; letter-spacing: 0.8px !important; white-space: nowrap !important; text-align: center !important; z-index: 99999 !important; border: 2px solid #ffffff !important;">
+      🗺️ Open Carrollton, TX Map Directions
+    </div>
 
-        </div>
-      </div>
-    </span>
-  </div>
+  </a>
 </div>
 
-<!-- Aggressive CSS isolation to permanently drop background javascript canvas artifacts from rendering -->
+<!-- Complete Script Isolation Block to prevent background scripts from throwing further errors in this section -->
 <style>
   div.gm-style, 
   .gm-style, 
   .gmnoprint, 
-  button[title*="shortcuts"],
+  button[title*="shortcuts"], 
   iframe,
-  div[data-aid="CONTACT_MAP_REND"] > div {
+  [data-aid="CONTACT_MAP_REND"] > div:not([style*="visible"]) {
     display: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
     height: 0px !important;
-    max-height: 0px !important;
     overflow: hidden !important;
-    position: absolute !important;
-    z-index: -9999 !important;
   }
 </style>
 
