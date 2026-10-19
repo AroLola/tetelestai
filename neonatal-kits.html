@@ -532,13 +532,13 @@ if ('serviceWorker' in navigator) {
 <section data-ux="Section" class="x-el x-el-section c1-1 c1-2 c1-9j c1-i c1-j c1-k c1-l c1-m c1-b c1-c c1-u c1-v c1-d c1-e c1-f c1-g" style="padding: 25px 0 !important; overflow: hidden !important; background: transparent !important;">
   <div data-ux="Container" class="x-el x-el-div c1-1 c1-2 c1-18 c1-19 c1-1a c1-1b c1-1c c1-b c1-c c1-1g c1-d c1-1h c1-e c1-1i c1-f c1-1j c1-g">
     
-    <!-- PURE CSS SLIDER ENGINE -->
+       <!-- PURE CSS SLIDER ENGINE (HEIGHT SPACING ADJUSTMENT) -->
     <style>
       .tetelestai-marquee-window {
         width: 100% !important;
         overflow: hidden !important;
         position: relative !important;
-        padding: 10px 0 !important;
+        padding: 15px 0 !important;
       }
       .tetelestai-marquee-track {
         display: flex !important;
@@ -555,10 +555,11 @@ if ('serviceWorker' in navigator) {
       }
       .tetelestai-marquee-slide img {
         width: 141px !important;
-        height: 100px !important;
-        object-fit: cover !important;
+        height: 135px !important; /* Increased from 100px to 135px to expand vertical space */
+        object-fit: contain !important; /* Changed from cover to contain to prevent any image cropping */
+        background-color: transparent !important;
         border-radius: 6px !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.06) !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.04) !important;
         display: block !important;
       }
       @keyframes tetelestaiMarqueeScroll {
@@ -569,6 +570,7 @@ if ('serviceWorker' in navigator) {
         animation-play-state: paused !important;
       }
     </style>
+
 
     <!-- THE SLIDER COMPONENT -->
     <div class="tetelestai-marquee-window">
@@ -582,7 +584,7 @@ if ('serviceWorker' in navigator) {
         <div class="tetelestai-marquee-slide"><img src="./images/blob-2d0ca42new.png" alt="Slide 5"></div>
         <div class="tetelestai-marquee-slide"><img src="./images/blob-086862c.png" alt="Slide 6"></div>
         <div class="tetelestai-marquee-slide"><img src="./images/blob-2d29860.png" alt="Slide 7"></div>
-        <div class="tetelestai-marquee-slide"><img src="./images/rubberduckbw6.png" alt="Slide 8"></div>
+        <div class="tetelestai-marquee-slide"><img src="./images/blob-be8c2cf.png" alt="Slide 8"></div>
 
         <!-- TRACK SET 2: SEAMLESS MIRROR TWINS -->
         <div class="tetelestai-marquee-slide"><img src="./images/baby1.jpg" alt="Slide 1 Copy"></div>
@@ -592,7 +594,7 @@ if ('serviceWorker' in navigator) {
         <div class="tetelestai-marquee-slide"><img src="./images/blob-2d0ca42new.png" alt="Slide 5 Copy"></div>
         <div class="tetelestai-marquee-slide"><img src="./images/blob-086862c.png" alt="Slide 6 Copy"></div>
         <div class="tetelestai-marquee-slide"><img src="./images/blob-2d29860.png" alt="Slide 7 Copy"></div>
-        <div class="tetelestai-marquee-slide"><img src="./images/rubberduckbw6.png" alt="Slide 8 Copy"></div>
+        <div class="tetelestai-marquee-slide"><img src="./images/blob-be8c2cf.png" alt="Slide 8 Copy"></div>
 
       </div>
     </div>
