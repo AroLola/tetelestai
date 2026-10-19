@@ -347,41 +347,62 @@ if ('serviceWorker' in navigator) {
 
   <div data-ux="GridCell" class="x-el x-el-div c1-1 c1-2 c1-7g c1-7n c1-7o c1-9e c1-1c c1-3e c1-7q c1-3g c1-7r c1-b c1-c c1-7s c1-7t c1-7u c1-7v c1-d c1-9f c1-9g c1-e c1-f c1-g"><div data-ux="Block" data-aid="CONTACT_INFO_CONTAINER_REND" class="x-el x-el-div c1-1 c1-2 c1-1r c1-9w c1-b c1-c c1-9x c1-7k c1-d c1-e c1-f c1-g"><div data-ux="Block" class="x-el x-el-div c1-1 c1-2 c1-9y c1-b c1-c c1-d c1-e c1-f c1-g"><h4 role="heading" aria-level="4" data-ux="ContentHeading" data-aid="CONTACT_INTRO_HEADING_REND" data-typography="HeadingDelta" class="x-el x-el-h4 c1-9h c1-2 c1-1m c1-1n c1-82 c1-4i c1-4j c1-1p c1-85 c1-b c1-4b c1-1u c1-2r c1-4c c1-4d c1-4e c1-4f"> </h4><div data-ux="ContentText" data-aid="CONTACT_INTRO_DESC_REND" data-typography="BodyAlpha" class="x-el c1-1 c1-2 c1-1m c1-1n c1-1o c1-1p c1-85 c1-1q c1-9z c1-a0 c1-a1 c1-a2 c1-a3 c1-a4 c1-a5 c1-a6 c1-a7 c1-a8 c1-a9 c1-aa c1-ab c1-ac c1-ad c1-ae c1-af c1-ag c1-ah c1-ai c1-aj c1-ak c1-al c1-am c1-an c1-ao c1-ap c1-aq c1-ar c1-as c1-at c1-au c1-b c1-c c1-1u c1-9j c1-av c1-aw c1-ax c1-d c1-e c1-f c1-g x-rt"><p style="margin:0"><span>&nbsp;</span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span><br></span></p></div></div><div data-ux="Block" class="x-el x-el-div c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><p data-ux="ContentText" data-aid="CONTACT_INFO_ADDRESS_REND" data-typography="BodyAlpha" class="x-el x-el-p c1-1 c1-2 c1-1m c1-1n c1-1o c1-1p c1-85 c1-1q c1-b c1-c c1-1u c1-9j c1-av c1-aw c1-ax c1-d c1-e c1-f c1-g">Tetelestai International HQ, Texas, USA</p></div></div></div></div></div></div></section>
   
- <!-- Structural Container Fix for Tetelestai Map Block -->
-<div style="display: block !important; position: relative !important; width: 100% !important; min-height: 450px !important; margin: 30px 0 !important; clear: both !important; overflow: visible !important; z-index: 10 !important;">
+<!-- FORCE MAP RESTITUTION AREA -->
+<div id="tetelestai-fixed-map-anchor" style="display: block !important; position: relative !important; width: 100% !important; height: 450px !important; margin: 40px auto !important; clear: both !important; float: none !important; z-index: 1 !important; visibility: visible !important; opacity: 1 !important;">
   
-  <!-- RAW IFRAME MAP EMBED - Stays inside normal page layout flow -->
+  <!-- EMBED WINDOW - Wrapped to ensure layout engine ignores it -->
   <iframe 
     src="https://google.com" 
     width="100%" 
     height="450" 
-    style="border: 0 !important; border-radius: 8px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important; display: block !important; width: 100% !important; position: relative !important;" 
+    style="border: 0 !important; border-radius: 8px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important; display: block !important; width: 100% !important; height: 450px !important; position: relative !important; z-index: 2 !important;" 
     allowfullscreen="" 
     loading="lazy" 
     referrerpolicy="strict-origin-when-cross-origin">
   </iframe>
 
-  <!-- HIGH-CONTRAST NEW TAB NAVIGATION BAR - Positioned relative to the safe map container -->
-  <div style="position: absolute !important; bottom: 15px !important; left: 15px !important; z-index: 20 !important;">
+  <!-- NAVIGATION OVERLAY BAR -->
+  <div style="position: absolute !important; bottom: 15px !important; left: 15px !important; z-index: 3 !important; display: block !important;">
     <a 
       href="#"
       onclick="window.open(atob('aHR0cHM6Ly9tYXBzLmdvb2dsZS5jb20vbWFwcy9wbGFjZS9DYXJyb2xsdG9uLCtUWCwrVVNBLw=='), '_blank', 'noopener,noreferrer'); return false;"
-      style="display: inline-block !important; background-color: #040430 !important; color: #ffffff !important; padding: 10px 20px !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif !important; font-size: 13px !important; font-weight: bold !important; border-radius: 4px !important; box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important; text-decoration: none !important; text-transform: uppercase; letter-spacing: 0.5px !important; border: 1px solid #ffffff !important;">
+      style="display: inline-block !important; background-color: #040430 !important; color: #ffffff !important; padding: 10px 20px !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif !important; font-size: 13px !important; font-weight: bold !important; border-radius: 4px !important; box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important; text-decoration: none !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; border: 1px solid #ffffff !important;">
       🗺️ Open Full Route Navigation
     </a>
   </div>
 
 </div>
 
-<!-- Safely Cleaned CSS Overrides - Removed the floating absolute positioning bug -->
+<!-- NUCLEAR CSS OVERRIDE BLOCK - Forces broken theme layers to vanish instantly -->
 <style>
-  div.gm-style-cc,
-  button[title*="shortcuts"] {
+  /* 1. Vaporize the theme's auto-generated broken container layers entirely */
+  div[data-aid="CONTACT_MAP_REND"],
+  div[data-ux="MapBanner"],
+  div.gm-style, 
+  .gm-style,
+  .gmnoprint,
+  iframe[src*="://google.com"] {
     display: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
     height: 0px !important;
+    max-height: 0px !important;
     overflow: hidden !important;
+    position: absolute !important;
+    z-index: -9999 !important;
+    pointer-events: none !important;
+  }
+
+  /* 2. Absolute protection for our clean anchor area layout flow */
+  #tetelestai-fixed-map-anchor,
+  #tetelestai-fixed-map-anchor iframe,
+  #tetelestai-fixed-map-anchor div,
+  #tetelestai-fixed-map-anchor a {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    max-height: none !important;
+    pointer-events: auto !important;
   }
 </style>
 
