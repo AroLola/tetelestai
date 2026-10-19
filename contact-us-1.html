@@ -373,13 +373,13 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
 <script src="./contact-us-1_files/js(1)" async="async"></script>
 <script src="./contact-us-1_files/bs-genericMap-e615c89a.js.download" defer></script>
 
-<!-- Fully Isolated Carrollton, TX Map Overwrite Frame -->
+ <!-- Fully Isolated Static Map Framework (100% Immune to Connection Refusals) -->
 <style>
-  /* 1. Target and hide ONLY GoDaddy's broken JavaScript map engine layers and artifacts */
+  /* 1. Force-hide GoDaddy's broken javascript container layers completely */
   div.gm-style, 
   .gm-style, 
   [data-aid="CONTACT_SECTION_TITLE_REND"] ~ div [data-ux="Map"],
-  .widget-map div:not(.clean-carrollton-box) {
+  .widget-map div:not(.static-carrollton-box) {
     display: none !important;
     height: 0px !important;
     visibility: hidden !important;
@@ -387,8 +387,8 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
     overflow: hidden !important;
   }
 
-  /* 2. Build a completely isolated container layer for our new map layout */
-  .clean-carrollton-box {
+  /* 2. Build our clean, secure static card wrapper layout */
+  .static-carrollton-box {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
@@ -397,31 +397,62 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
     clear: both !important;
     padding: 20px 0 !important;
     margin: 0 auto !important;
-    height: auto !important;
+    text-align: center !important;
   }
 
-  /* 3. Lock layout dimensions for our clean, secure HTML frame */
-  .clean-carrollton-box iframe.custom-embed {
-    display: block !important;
-    visibility: visible !important;
+  /* 3. Style the clickable map card to look elegant and native */
+  .map-link-card {
+    display: inline-block !important;
     width: 100% !important;
-    height: 400px !important;
-    min-height: 350px !important;
-    border: 0 !important;
-    border-radius: 6px !important;
+    max-width: 100% !important;
+    height: 350px !important;
+    /* Clean fallback background showing grid context while loading */
+    background: #e5e3df url('https://gstatic.com') no-repeat center !important;
+    background-size: cover !important;
+    border-radius: 8px !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    position: relative !important;
+    text-decoration: none !important;
+    overflow: hidden !important;
+    transition: transform 0.2s ease !important;
+  }
+
+  .map-link-card:hover {
+    transform: scale(1.01) !important;
+  }
+
+  /* 4. Floating interactive button design over the card layout */
+  .map-action-btn {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    background-color: #040430 !important; /* Matches your theme dark blue primary color color code */
+    color: #ffffff !important;
+    padding: 12px 24px !important;
+    font-family: Roboto, Arial, sans-serif !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    border-radius: 20px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    white-space: nowrap !important;
   }
 </style>
 
-<!-- 4. Pure HTML Carrollton, TX Map Node (Completely immune to GoDaddy's script crashes) -->
-<div class="clean-carrollton-box">
-  <iframe 
-    class="custom-embed"
-    src="https://google.com" 
-    loading="lazy" 
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
+<!-- 5. Standalone Static Map Trigger Node -->
+<div class="static-carrollton-box">
+  <a class="map-link-card" href="https://google.com" target="_blank" rel="noopener">
+    <!-- Pulling an authentic static vector map snapshot grid directly from Google's static engine asset bank -->
+    <img src="https://googleapis.com" 
+         alt="Map of Carrollton, Texas" 
+         style="width: 100% !important; height: 100% !important; object-fit: cover !important; border: 0 !important; display: block !important;"
+         onerror="this.style.display='none';">
+    <div class="map-action-btn">Open Interactive Map</div>
+  </a>
 </div>
+
 
 
 </body>
