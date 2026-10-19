@@ -372,47 +372,66 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
 <!-- Core Google Maps Library scripts mapping correctly into your folder files path -->
 <script src="./contact-us-1_files/js(1)" async="async"></script>
 <script src="./contact-us-1_files/bs-genericMap-e615c89a.js.download" defer></script>
-  <!-- Responsive Carrollton Map Overwrite Enforcer -->
+
+<!-- Ultimate Map Overwrite Block: Relocates to Carrollton & Overrides Container Collapsing -->
 <style>
-  /* 1. Hide the old, crashing GoDaddy mobile map layer entirely */
+  /* 1. Global Overwrite: Replace GoDaddy's dynamic Austin scripts with static Carrollton logic */
+  iframe, 
+  iframe[src*="://google.com"],
+  [data-ux="Map"] iframe {
+    content: url("https://google.com") !important;
+  }
+
+  /* 2. Mobile Layout Enforcer: Destroy any hidden wrapper collapsing states under 1024px */
   @media only screen and (max-width: 1024px) {
-    .widget-map, 
-    [data-ux="Map"], 
-    div.gm-style, 
-    iframe[src*="maps.google.com"] {
-      display: none !important;
-      height: 0px !important;
-      visibility: hidden !important;
+    /* Uncollapse GoDaddy's dynamic layout grids */
+    .widget-map,
+    [data-ux="Map"],
+    div[class*="widget-map"],
+    section[class*="widget-map"] {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      height: 400px !important;
+      min-height: 380px !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      overflow: visible !important;
+    }
+
+    /* Force the newly uncollapsed inner iframe map to render with standard vertical dimensions */
+    .widget-map iframe,
+    [data-ux="Map"] iframe,
+    .mobile-map-fallback iframe {
+      display: block !important;
+      visibility: visible !important;
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 350px !important;
     }
     
-    /* 2. Make space for our clean HTML iframe mirror frame */
     .mobile-map-fallback {
       display: block !important;
       width: 100% !important;
-      padding: 20px 0;
-    }
-  }
-  
-  /* Hide the fallback element on desktops so it doesn't double-up */
-  @media only screen and (min-width: 1025px) {
-    .mobile-map-fallback {
-      display: none !important;
+      height: 380px !important;
+      visibility: visible !important;
     }
   }
 </style>
 
-<!-- 3. Our standalone Carrollton, TX map frame -->
+<!-- Standalone Fallback Framework Node -->
 <div class="mobile-map-fallback">
   <iframe 
     src="https://google.com" 
     width="100%" 
     height="380" 
-    style="border:0; display:block; min-height:350px; border-radius: 4px;" 
+    style="border:0; display:block; min-height:350px; width:100%;" 
     allowfullscreen="" 
     loading="lazy" 
     referrerpolicy="no-referrer-when-downgrade">
   </iframe>
 </div>
+  
 
 </body>
 </html>
