@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <!-- saved from url=(0044)https://tetelestai.services/about-tetelestai -->
 <html lang="en-IN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="icon" href="./images/3c3d281e-3a9d-4cfd-ba6e-3a9c9f8375aa.jpg" sizes="16x16"><link rel="icon" href="./images/3c3d281e-3a9d-4cfd-ba6e-3a9c9f8375aa.jpg" sizes="24x24"><link rel="icon" href="./images/3c3d281e-3a9d-4cfd-ba6e-3a9c9f8375aa.jpg" sizes="32x32"><link rel="icon" href="./images/3c3d281e-3a9d-4cfd-ba6e-3a9c9f8375aa.jpg" sizes="48x48"><link rel="icon" href="./images/3c3d281e-3a9d-4cfd-ba6e-3a9c9f8375aa.jpg" sizes="64x64"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>About Tetelestai </title>
-<style>
-  /* Forces GoDaddy's header layout containers to accommodate the entire logo graphic */
-  img[data-aid="HEADER_LOGO_IMAGE_RENDERED"],
-  .x-el-img[data-aid="HEADER_LOGO_IMAGE_RENDERED"] {
-    max-width: 100% !important;
-    width: auto !important;
-    height: auto !important;
-    max-height: 70px !important; /* Prevents the header bar from ballooning vertically */
-    object-fit: contain !important;
-    display: block !important;
-  }
+ <style>
+  /* Mobile-Specific Symmetrical Layout Fix */
+  @media (max-width: 767px) {
+    /* 1. Force the image element to stay completely inside screen limits without clipping */
+    img[data-aid="HEADER_LOGO_IMAGE_RENDERED"],
+    .x-el-img[data-aid="HEADER_LOGO_IMAGE_RENDERED"] {
+      max-width: 85vw !important; /* Limits the logo width to 85% of the mobile screen */
+      height: auto !important;
+      max-height: 55px !important; /* Keeps header block heights proportional */
+      object-fit: contain !important;
+      display: block !important;
+      margin: 0 auto !important; /* Forces perfect layout center-alignment */
+    }
 
-  /* Expands the squeezed structural wrapping cell cells used by the website builder */
-  div[data-aid="HEADER_LOGO_RENDERED"], 
-  div[data-aid="HEADER_LOGO_RENDERED"] > a,
-  div[data-aid="HEADER_LOGO_RENDERED"] div {
-    max-width: 100% !important;
-    width: auto !important;
-    overflow: visible !important; /* Stops the system from clipping long text elements */
-    display: inline-flex !important;
-    align-items: center !important;
+    /* 2. Stabilize the structural parent cell dimensions */
+    div[data-aid="HEADER_LOGO_RENDERED"],
+    div[data-aid="HEADER_LOGO_RENDERED"] > a,
+    div[data-aid="HEADER_LOGO_RENDERED"] div {
+      width: 100% !important;
+      max-width: 100% !important;
+      text-align: center !important;
+      display: block !important;
+      overflow: visible !important;
+    }
   }
-</style>  
+</style>
+
 <meta name="description" content="Tetelestai International is a philanthropic organization providing life-saving resources and community service to the under-resourced."><meta name="author" content="Tetelestai International"><meta name="generator" content="Starfield Technologies; Go Daddy Website Builder 8.0.0000"><link rel="canonical" href="https://tetelestai.services/about-tetelestai"><link rel="manifest" href="https://tetelestai.services/manifest.webmanifest"><link rel="apple-touch-icon" sizes="57x57" href="./images/blob-dd65dr.png"><link rel="apple-touch-icon" sizes="60x60" href="./images/blob-dd65dr.png"><link rel="apple-touch-icon" sizes="72x72" href="./images/blob-dd65dr.png"><link rel="apple-touch-icon" sizes="114x114" href="./images/blob-dd65dr.png"><link rel="apple-touch-icon" sizes="120x120" href="./images/blob-dd65dr.png"><link rel="apple-touch-icon" sizes="144x144" href="./images/blob-dd65dr.png"><link rel="apple-touch-icon" sizes="152x152" href="./images/blob-dd65dr.png"><link rel="apple-touch-icon" sizes="180x180" href="./images/blob-dd65dr.png"><meta property="og:url" content="https://tetelestai.services/about-tetelestai">
 <meta property="og:site_name" content="Tetelestai International">
 <meta property="og:title" content="Tetelestai International">
