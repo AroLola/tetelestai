@@ -295,46 +295,49 @@ SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
 <style data-glamor="cxs-lg-sheet">@media (min-width: 1280px){.x .c1-f{font-size:16px}}@media (min-width: 1280px){.x .c1-1i{width:1160px}}@media (min-width: 1280px){.x .c1-4e{font-size:22px}}@media (min-width: 1280px){.x .c1-57{font-size:14px}}@media (min-width: 1280px){.x .c1-6j{font-size:32px}}@media (min-width: 1280px){.x .c1-7y > div + div{max-width:1160px}}@media (min-width: 1280px){.x .c1-bk{font-size:12px}}</style>
 <style data-glamor="cxs-xl-sheet">@media (min-width: 1536px){.x .c1-g{font-size:18px}}@media (min-width: 1536px){.x .c1-1j{width:1280px}}@media (min-width: 1536px){.x .c1-4f{font-size:24px}}@media (min-width: 1536px){.x .c1-58{font-size:16px}}@media (min-width: 1536px){.x .c1-6k{font-size:36px}}@media (min-width: 1536px){.x .c1-7z > div + div{max-width:1280px}}@media (min-width: 1536px){.x .c1-bl{font-size:14px}}</style>
 
- <!-- SYSTEM RESOLUTION - REMOVES HEADER CEILING HEIGHT LIMITS TO SCALE UP LOGO -->
+<!-- SYSTEM RECONSTRUCTION - FORCES LOGO SCALING AND DROPS SPACING DOWN FROM BORDER -->
 <style>
   @media (max-width: 767px) {
-    /* 1. Expand the canvas size window for all background logo class layers */
-    .x .c1-ag, .x .c1-ah, .x .c1-ai, .x .c1-aj, .x .c1-ak, .x .c1-al {
-      background-size: contain !important;      
-      background-position: center !important;   
-      background-repeat: no-repeat !important;   
-      width: 90vw !important;                    
-      max-width: 100% !important;
-      min-height: 85px !important;              /* Physical image window height target */
-      height: 85px !important;
+    /* 1. Target the interior logo link division specifically to balloon the size */
+    #n-189678,
+    img[id="n-189678"],
+    div[data-aid="HEADER_LOGO_RENDERED"] img {
+      width: 65vw !important;                    
+      max-width: 260px !important;               
+      height: auto !important;
+      min-height: 65px !important;               
+      object-fit: contain !important;
       display: block !important;
-      float: none !important;
-      margin: 0 auto !important;
+      margin: 12px auto 0 auto !important;       /* Added 12px to the top margin to shift it down smoothly */
     }
 
-    /* 2. FORCE THE CEILING OPEN: Destroys GoDaddy's strict mobile height restrictions on outer wrappers */
+    /* 2. Target the exact parent header cell blocks to loosen height constraints */
     div[data-aid="HEADER_LOGO_RENDERED"],
     div[data-aid="HEADER_LOGO_RENDERED"] > a,
-    div[data-aid="HEADER_LOGO_RENDERED"] div,
-    a[aria-label*="Site Navigation"],
-    div[data-aid="HEADER_LOGO_RENDERED"] > a > div {
+    div[data-aid="HEADER_LOGO_RENDERED"] div {
       width: 100% !important;
       max-width: 100% !important;
       min-width: 100% !important;
-      min-height: 85px !important;             /* Breaks the height cell restriction */
+      min-height: 85px !important;               /* Slightly expanded to give the downward shift breathing room */
       height: auto !important;
-      display: block !important;
-      text-align: center !important;
+      display: flex !important;
+      justify-content: center !important;        
+      align-items: center !important;
+      padding: 5px 0 !important;
       margin: 0 auto !important;
-      padding: 0 !important;
-      overflow: visible !important;
-      float: none !important;
-      position: relative !important;
-      left: 0 !important;
-      right: 0 !important;
+    }
+
+    /* 3. Reset Glamor class rules so they do not interfere with food layout dimensions */
+    .x .c1-ag, .x .c1-ah, .x .c1-ai, .x .c1-aj, .x .c1-ak, .x .c1-al {
+      background-size: contain !important;
+      background-position: center !important;
+      width: auto !important;
+      min-height: 0px !important;
+      height: auto !important;
     }
   }
 </style>
+
 
 <style>@keyframes opacity-bounce { 
       0% {opacity: 0;transform: translateY(100%); } 
