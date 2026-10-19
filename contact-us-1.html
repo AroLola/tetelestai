@@ -354,14 +354,14 @@ if ('serviceWorker' in navigator) {
   <a 
     href="#"
     onclick="window.open(atob('aHR0cHM6Ly9tYXBzLmdvb2dsZS5jb20vbWFwcy9wbGFjZS9DYXJyb2xsdG9uLCtUWCwrVVNBLw=='), '_blank', 'noopener,noreferrer'); return false;"
-    style="display: block !important; width: 100% !important; height: 100% !important; text-decoration: none !important; position: relative !important; cursor: pointer !important; background: #e5e3df url('https://googleapis.com') no-repeat center !important; background-size: cover !important; border-radius: 8px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;">
+    style="display: block !important; width: 100% !important; height: 450px !important; text-decoration: none !important; position: relative !important; cursor: pointer !important; background-color: #e5e3df !important; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://w2.org width=%22800%22 height=%22450%22 viewBox=%220 0 800 450%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23e5e3df%22/><path d=%22M0,150 L800,180 M0,300 L800,280 M200,0 L250,450 M550,0 L500,450 M400,100 L420,400%22 stroke=%22%23ffffff%22 stroke-width=%2212%22 fill=%22none%22 opacity=%220.6%22/><path d=%22M100,0 C150,200 50,250 120,450 M0,50 Q400,200 800,120%22 stroke=%22%23f9b84a%22 stroke-width=%226%22 fill=%22none%22 opacity=%220.4%22/><circle cx=%22400%22 cy=%22225%22 r=%2215%22 fill=%22%23ea4335%22/><circle cx=%22400%22 cy=%22225%22 r=%226%22 fill=%22%23b31412%22/></svg>') !important; background-repeat: no-repeat !important; background-position: center !important; background-size: cover !important; border-radius: 8px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;">
     
-    <!-- Deep Blue Overlay Layer to Blend with Theme -->
-    <div style="position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background: rgba(4, 4, 48, 0.05) !important;"></div>
+    <!-- Shading Overlay Layer to Blend with Theme -->
+    <div style="position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; background: rgba(4, 4, 48, 0.03) !important; pointer-events: none !important; display: block !important;"></div>
 
-    <!-- HIGH-CONTRAST NEW TAB NAVIGATION BAR -->
-    <div style="position: absolute !important; bottom: 20px !important; left: 20px !important; z-index: 30 !important; display: block !important;">
-      <span style="display: inline-block !important; background-color: #040430 !important; color: #ffffff !important; padding: 12px 24px !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif !important; font-size: 13px !important; font-weight: bold !important; border-radius: 4px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important; text-transform: uppercase !important; letter-spacing: 0.6px !important; border: 1px solid #ffffff !important;">
+    <!-- HIGH-CONTRAST NEW TAB NAVIGATION BAR - Keeps its compact dimensions -->
+    <div style="position: absolute !important; bottom: 20px !important; left: 20px !important; z-index: 30 !important; display: block !important; width: auto !important; height: auto !important;">
+      <span style="display: inline-block !important; background-color: #040430 !important; color: #ffffff !important; padding: 12px 24px !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif !important; font-size: 13px !important; font-weight: bold !important; border-radius: 4px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important; text-transform: uppercase !important; letter-spacing: 0.6px !important; border: 1px solid #ffffff !important; width: auto !important; height: auto !important; line-height: normal !important; white-space: nowrap !important;">
         🗺️ Open Full Route Navigation
       </span>
     </div>
@@ -370,7 +370,7 @@ if ('serviceWorker' in navigator) {
 
 </div>
 
-<!-- BULLETPROOF LAYOUT RESET STYLESHEET -->
+<!-- COMPACT LAYOUT RESET STYLESHEET -->
 <style>
   /* 1. Vaporize the theme's broken auto-generated layout block completely */
   div[data-aid="CONTACT_MAP_REND"],
@@ -395,11 +395,8 @@ if ('serviceWorker' in navigator) {
     pointer-events: none !important;
   }
 
-  /* 2. Absolute protection whitelist to preserve our working container flow */
-  #tetelestai-fixed-map-anchor,
-  #tetelestai-fixed-map-anchor a,
-  #tetelestai-fixed-map-anchor div,
-  #tetelestai-fixed-map-anchor span {
+  /* 2. Absolute protection whitelist for parent flow sizes only */
+  #tetelestai-fixed-map-anchor {
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
