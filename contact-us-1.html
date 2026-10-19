@@ -373,42 +373,56 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
 <script src="./contact-us-1_files/js(1)" async="async"></script>
 <script src="./contact-us-1_files/bs-genericMap-e615c89a.js.download" defer></script>
 
-<!-- Clean Map Overwrite Enforcer -->
+<!-- Fully Isolated Carrollton, TX Map Overwrite Frame -->
 <style>
-  /* 1. Completely hide GoDaddy's broken map widget, controls, and broken images on all screens */
-  .widget-map, 
-  [data-ux="Map"], 
+  /* 1. Target and hide ONLY GoDaddy's broken JavaScript map engine layers and artifacts */
   div.gm-style, 
-  .gm-style,
-  iframe[src*="://google.com"] {
+  .gm-style, 
+  [data-aid="CONTACT_SECTION_TITLE_REND"] ~ div [data-ux="Map"],
+  .widget-map div:not(.clean-carrollton-box) {
     display: none !important;
     height: 0px !important;
     visibility: hidden !important;
     opacity: 0 !important;
+    overflow: hidden !important;
   }
-  
-  /* 2. Style and display our clean HTML iframe container */
-  .clean-carrollton-map {
+
+  /* 2. Build a completely isolated container layer for our new map layout */
+  .clean-carrollton-box {
     display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     width: 100% !important;
     max-width: 100% !important;
-    padding: 20px 0;
     clear: both !important;
+    padding: 20px 0 !important;
+    margin: 0 auto !important;
+    height: auto !important;
+  }
+
+  /* 3. Lock layout dimensions for our clean, secure HTML frame */
+  .clean-carrollton-box iframe.custom-embed {
+    display: block !important;
+    visibility: visible !important;
+    width: 100% !important;
+    height: 400px !important;
+    min-height: 350px !important;
+    border: 0 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
   }
 </style>
 
-<!-- 3. Bulletproof, standalone Carrollton, TX Map Framework -->
-<div class="clean-carrollton-map">
+<!-- 4. Pure HTML Carrollton, TX Map Node (Completely immune to GoDaddy's script crashes) -->
+<div class="clean-carrollton-box">
   <iframe 
+    class="custom-embed"
     src="https://google.com" 
-    width="100%" 
-    height="400" 
-    style="border:0; display:block; min-height:350px; width:100%; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" 
-    allowfullscreen="" 
     loading="lazy" 
     referrerpolicy="no-referrer-when-downgrade">
   </iframe>
 </div>
+
 
 </body>
 </html>
