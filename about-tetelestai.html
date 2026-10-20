@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <!-- saved from url=(0044)https://tetelestai.services/about-tetelestai -->
 <html lang="en-IN"><head>
- <!-- SYSTEM NAVIGATION RECOVERY - AUTOMATICALLY UNROLLS ALL HIDDEN MOBILE DRAWER SUB-MENUS -->
+<!-- SYSTEM NAVIGATION RECOVERY - FULLY EXPANDED SCROLLABLE MOBILE DRAWER -->
 <style>
   @media (max-width: 767px) {
     /* FORCES THE HAMBURGER BUTTON SVG LINES TO REMAIN CRISP WHITE ON ALL TABS */
@@ -15,7 +15,7 @@
       opacity: 1 !important;
     }
 
-    /* 1. Force both possible mobile container panel ids to display fully open when toggled active */
+    /* 1. Force both possible mobile container panel ids to display fully open and vertically scrollable */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"].tetelestai-open-drawer {
       display: block !important;
       visibility: visible !important;
@@ -28,8 +28,12 @@
       height: 100vh !important;
       background-color: #040430 !important; /* Elegant corporate deep blue organizational theme */
       z-index: 999999 !important;
-      overflow-y: auto !important;
-      padding: 80px 20px 40px 20px !important;
+      
+      /* THE SPACING FIX: Enables absolute vertical swiping so no links are trapped off-screen */
+      overflow-y: scroll !important; 
+      -webkit-overflow-scrolling: touch !important; /* Forces buttery-smooth finger scrolling on iOS devices */
+      
+      padding: 80px 20px 60px 20px !important;
       box-sizing: border-box !important;
     }
 
@@ -47,45 +51,18 @@
       float: none !important;
     }
 
-    /* 3. Force all nested overflow lists (Initiatives, Publications, Contact) to unroll inline */
+    /* 3. Force all nested overflow lists (Initiatives, Publications, Contact) to display fully unrolled inline */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul,
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [data-ux="NavigationDrawerList"] [role="menu"],
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [class*="Dropdown"] {
-      display: none !important; /* SWITCHED TO HIDDEN TO DEPLOY ACCORDION SPACE-SAVING HEIGHT */
-      visibility: hidden !important;
-      opacity: 0 !important;
+      display: block !important; 
+      visibility: visible !important;
+      opacity: 1 !important;
       position: relative !important;
       margin-left: 20px !important;
       padding-left: 12px !important;
       border-left: 2px solid rgba(255, 255, 255, 0.15) !important;
-    }
-
-    /* ACCORDION RE-OPEN TOGGLE RULE: Activates smooth vertical unfolding when active flag lands */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul.tetelestai-submenu-visible,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"].tetelestai-submenu-visible {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
       height: auto !important;
-    }
-
-    /* GESTURE OVERRIDE: Pierces right through GoDaddy's pointer-event traps to register touches instantly */
-    .tetelestai-accordion-trigger,
-    .tetelestai-accordion-trigger * {
-      pointer-events: auto !important;
-    }
-
-    /* ACCORDION DECORATOR INDICATOR ARROWS: Paints clean menu layout folding status items */
-    .tetelestai-accordion-trigger::after {
-      content: ' ▾' !important;
-      display: inline-block !important;
-      transition: transform 0.2s ease !important;
-      color: rgba(255, 255, 255, 0.4) !important;
-      margin-left: 6px !important;
-    }
-    .tetelestai-arrow-rotated::after {
-      transform: rotate(180deg) !important;
-      color: #ffffff !important;
     }
 
     /* 4. Fix typography styling parameters for crisp smartphone readability */
@@ -523,117 +500,13 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
 <script>"use strict";Core.utils.onAllowCookieTracking(function () {const queryString = window.location.search;const urlParams = new URLSearchParams(queryString);const whiteList = ['gclid', 'fbclid', 'gdan_clid'];const belongToList = list => item => list.includes(item);const belongToWhiteList = belongToList(whiteList);Array.from(urlParams).forEach(param => {const [queryKey, queryResult] = param;if (!belongToWhiteList(queryKey)) return;localStorage.setItem(queryKey, queryResult);});});
 "use strict";Core.utils.onAllowCookieTracking(() => {function u() {if (crypto.randomUUID) return crypto.randomUUID();const b = crypto.getRandomValues(new Uint8Array(16));b[6] = b[6] & 15 | 64;b[8] = b[8] & 63 | 128;const h = [...b].map(x => x.toString(16).padStart(2, "0"));return `${h[0]}${h[1]}${h[2]}${h[3]}-${h[4]}${h[5]}-${h[6]}${h[7]}-${h[8]}${h[9]}-${h.slice(10).join("")}`;}if (!document.cookie.includes("x-visitor-id")) {!function (o, i, e = 60) {const t = new Date();t.setTime(t.getTime() + 864e5 * e);const n = `expires=${t.toUTCString()}`;document.cookie = `${o}=${i};${n};path=/`;}("x-visitor-id", u(), 60);}});</script><script type="module" src="./about-tetelestai_files/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;1bd414b68a2140f6ba59bca0850b30b8&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
 
- <!-- SYSTEM NAVIGATION RECOVERY - COLLAPSIBLE MULTI-TIER ACCORDION DRAWER -->
-<style>
-  @media (max-width: 767px) {
-    /* FORCES THE HAMBURGER BUTTON SVG LINES TO REMAIN CRISP WHITE ON ALL TABS */
-    a[data-aid="HAMBURGER_MENU_LINK"],
-    a[data-aid="HAMBURGER_MENU_LINK"] svg,
-    a[data-aid="HAMBURGER_MENU_LINK"] path,
-    [data-ux="IconHamburger"],
-    [data-ux="IconHamburger"] path {
-      color: #ffffff !important;
-      fill: #ffffff !important;
-      opacity: 1 !important;
-    }
-
-    /* 1. Force both possible mobile container panel ids to display fully open when toggled active */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"].tetelestai-open-drawer {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      transform: none !important;
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100vw !important;
-      height: 100vh !important;
-      background-color: #040430 !important; /* Elegant corporate deep blue organizational theme */
-      z-index: 999999 !important;
-      overflow-y: auto !important;
-      padding: 80px 20px 40px 20px !important;
-      box-sizing: border-box !important;
-    }
-
-    /* 2. Format parent and child list structures to stack vertically down the sidebar */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] li {
-      display: block !important;
-      width: 100% !important;
-      height: auto !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      text-align: left !important;
-      margin: 0 !important;
-      padding: 8px 0 !important;
-      float: none !important;
-    }
-
-    /* 3. Force all nested overflow lists (Initiatives, Publications, Contact) to unroll inline */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [data-ux="NavigationDrawerList"] [role="menu"],
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [class*="Dropdown"] {
-      display: none !important; /* SWITCHED TO HIDDEN TO DEPLOY ACCORDION SPACE-SAVING HEIGHT */
-      visibility: hidden !important;
-      opacity: 0 !important;
-      position: relative !important;
-      margin-left: 20px !important;
-      padding-left: 12px !important;
-      border-left: 2px solid rgba(255, 255, 255, 0.15) !important;
-    }
-
-    /* ACCORDION RE-OPEN TOGGLE RULE: Activates smooth vertical unfolding when active flag lands */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul.tetelestai-submenu-visible,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"].tetelestai-submenu-visible {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      height: auto !important;
-    }
-
-    /* GESTURE OVERRIDE: Pierces right through GoDaddy's pointer-event traps to register touches instantly */
-    .tetelestai-accordion-trigger,
-    .tetelestai-accordion-trigger * {
-      pointer-events: auto !important;
-      cursor: pointer !important;
-    }
-
-    /* ACCORDION DECORATOR INDICATOR ARROWS: Paints clean menu layout folding status items */
-    .tetelestai-accordion-trigger::after {
-      content: ' ▾' !important;
-      display: inline-block !important;
-      transition: transform 0.2s ease !important;
-      color: rgba(255, 255, 255, 0.4) !important;
-      margin-left: 6px !important;
-    }
-    .tetelestai-arrow-rotated::after {
-      transform: rotate(180deg) !important;
-      color: #ffffff !important;
-    }
-
-    /* 4. Fix typography styling parameters for crisp smartphone readability */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] a,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] span {
-      color: #ffffff !important;
-      font-size: 19px !important;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-      text-decoration: none !important;
-    }
-
-    /* Style sub-navigation target links slightly smaller to indicate path hierarchy levels */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul a,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"] a {
-      font-size: 16px !important;
-      color: #d1d1d6 !important; /* Soft gray secondary contrast tone accent */
-    }
-  }
-</style>
-
-<!-- TETELESTAI NATIVE NAVIGATION DRAWER ACCESSIBILITY BRIDGE -->
+ <!-- TETELESTAI NATIVE NAVIGATION DRAWER ACCESSIBILITY BRIDGE -->
 <script type="text/javascript">
   (function() {
     function wireAdaptiveMobileMenu() {
+      // Find the header hamburger link selector via its automated system data marker
       var menuIcon = document.querySelector('[data-aid="HAMBURGER_MENU_LINK"]');
+      // Dynamically target the hidden mobile sidebar drawer layout via partial id wildcard matching
       var sideDrawer = document.querySelector('div[data-ux="NavigationDrawer"][id*="-navId-mobile"]');
       
       if (!menuIcon || !sideDrawer) return;
@@ -657,44 +530,6 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
           sideDrawer.classList.remove('tetelestai-open-drawer');
         });
       }
-
-      // GLOBAL ACCORDION MODULE: Targets all potential interactive title fields inside the lists
-      var accordionLinks = sideDrawer.querySelectorAll('li > a, li > div > a, li[role="menuitem"] a, li > div[id*="bs-"] a');
-      
-      accordionLinks.forEach(function(link) {
-        var parentBlock = link.closest('li');
-        if (!parentBlock) return;
-
-        // Locates the sub-dropdown menu block nested right inside this list row
-        var childDropdown = parentBlock.querySelector('ul') || parentBlock.querySelector('[role="menu"]') || parentBlock.querySelector('[class*="Dropdown"]');
-        
-        if (childDropdown && childDropdown !== link) {
-          // Label them as accordion anchors to receive arrow markers up in the styles block
-          link.classList.add('tetelestai-accordion-trigger');
-          
-          link.addEventListener('click', function(e) {
-            // Absolute Multi-Page Intercept: Forces collapse logic on anything hosting sub-items
-            e.preventDefault();
-            e.stopPropagation();
-            
-            var isCurrentOpen = childDropdown.classList.contains('tetelestai-submenu-visible');
-            
-            // Clear out any other active categories to keep sidebar short and elegant
-            sideDrawer.querySelectorAll('ul ul, [role="menu"], [class*="Dropdown"]').forEach(function(dropdown) {
-              dropdown.classList.remove('tetelestai-submenu-visible');
-            });
-            sideDrawer.querySelectorAll('.tetelestai-accordion-trigger').forEach(function(trigger) {
-              trigger.classList.remove('tetelestai-arrow-rotated');
-            });
-
-            // Slide our selected branch open cleanly
-            if (!isCurrentOpen) {
-              childDropdown.classList.add('tetelestai-submenu-visible');
-              link.classList.add('tetelestai-arrow-rotated');
-            }
-          });
-        }
-      });
     }
 
     // Safely trigger layout listeners across DOM state generations
