@@ -1,100 +1,83 @@
  <!DOCTYPE html>
 <!-- saved from url=(0035)https://tetelestai.services/reports -->
 <html lang="en-IN"><head>
-<!-- SYSTEM RECONSTRUCTION - ISOLATED NATIVE OVERLAY FOR MULTI-DEVICE SUPPORT -->
+ <!-- SYSTEM NAVIGATION RECOVERY - AUTOMATICALLY UNROLLS ALL HIDDEN MOBILE DRAWER SUB-MENUS -->
 <style>
-  /* Mobile Viewport Layout Overrides */
   @media (max-width: 767px) {
-    /* 1. Aggressively hide GoDaddy's broken mobile hamburger link to prevent layout fights */
-    a[data-aid="HAMBURGER_MENU_LINK"], 
-    div[id="bs-6"], 
-    div[id="bs-12"] {
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      width: 0px !important;
-      height: 0px !important;
-    }
-
-    /* 2. Build a crisp, highly-visible float trigger button right onto the navbar panel */
-    .tetelestai-native-hamburger-trigger {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      position: absolute !important;
-      top: 22px !important;
-      right: 20px !important;
-      width: 44px !important;
-      height: 44px !important;
-      background-color: #040430 !important; /* Elegant corporate deep blue organizational theme */
+    /* FORCES THE HAMBURGER BUTTON SVG LINES TO REMAIN CRISP WHITE ON ALL TABS */
+    a[data-aid="HAMBURGER_MENU_LINK"],
+    a[data-aid="HAMBURGER_MENU_LINK"] svg,
+    a[data-aid="HAMBURGER_MENU_LINK"] path,
+    [data-ux="IconHamburger"],
+    [data-ux="IconHamburger"] path {
       color: #ffffff !important;
-      border: 2px solid #ffffff !important;
-      border-radius: 6px !important;
-      font-size: 24px !important;
-      font-weight: bold !important;
-      z-index: 999999 !important;
-      cursor: pointer !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+      fill: #ffffff !important;
+      opacity: 1 !important;
     }
 
-    /* 3. The isolated, full-screen vertical link dropdown deck layer */
-    .tetelestai-native-menu-drawer {
-      display: none; /* Hidden until toggled active via the script selector */
+    /* 1. Force both possible mobile container panel ids to display fully open when toggled active */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"].tetelestai-open-drawer {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
       position: fixed !important;
       top: 0 !important;
       left: 0 !important;
       width: 100vw !important;
       height: 100vh !important;
-      background-color: #040430 !important;
-      z-index: 999998 !important;
-      padding: 90px 25px 40px 25px !important;
-      box-sizing: border-box !important;
+      background-color: #040430 !important; /* Elegant corporate deep blue organizational theme */
+      z-index: 999999 !important;
       overflow-y: auto !important;
+      padding: 80px 20px 40px 20px !important;
+      box-sizing: border-box !important;
     }
 
-    .tetelestai-native-menu-drawer ul {
-      list-style: none !important;
-      padding: 0 !important;
-      margin: 0 !important;
-    }
-
-    .tetelestai-native-menu-drawer li {
-      padding: 12px 0 !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-    }
-
-    .tetelestai-native-menu-drawer a {
-      color: #ffffff !important;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
-      font-size: 18px !important;
-      font-weight: bold !important;
-      text-decoration: none !important;
-      text-transform: uppercase !important;
-      letter-spacing: 0.8px !important;
+    /* 2. Format parent and child list structures to stack vertically down the sidebar */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] li {
       display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      text-align: left !important;
+      margin: 0 !important;
+      padding: 8px 0 !important;
+      float: none !important;
     }
 
-    /* Indent child directory paths cleanly */
-    .tetelestai-native-menu-drawer li.tetelestai-subitem {
-      padding-left: 20px !important;
-      border-bottom: none !important;
+    /* 3. Force all nested overflow lists (Initiatives, Publications, Contact) to unroll inline */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [data-ux="NavigationDrawerList"] [role="menu"],
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [class*="Dropdown"] {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      position: relative !important;
+      margin-left: 20px !important;
+      padding-left: 12px !important;
+      border-left: 2px solid rgba(255, 255, 255, 0.15) !important;
     }
-    
-    .tetelestai-native-menu-drawer li.tetelestai-subitem a {
-      font-size: 15px !important;
-      color: #d1d1d6 !important;
-      text-transform: none !important;
-    }
-  }
 
-  /* Desktop Monitor Framework Safeguards: Instantly hide mobile components */
-  @media (min-width: 768px) {
-    .tetelestai-native-hamburger-trigger, 
-    .tetelestai-native-menu-drawer {
-      display: none !important;
+    /* 4. Fix typography styling parameters for crisp smartphone readability */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] a,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] span {
+      color: #ffffff !important;
+      font-size: 19px !important;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      text-decoration: none !important;
+    }
+
+    /* Style sub-navigation target links slightly smaller to indicate path hierarchy levels */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul a,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"] a {
+      font-size: 16px !important;
+      color: #d1d1d6 !important; /* Soft gray secondary contrast tone accent */
     }
   }
-</style> 
+</style>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="icon" href="./images/3c3d281e-3a9d-4cfd-ba6e-3a9c9f8375aa.jpg" sizes="16x16"><link rel="icon" href="./images/3c3d281e-3a9d-4cfd-ba6e-3a9c9f8375aa.jpg" sizes="24x24"><link rel="icon" href="./images/3c3d281e-3a9d-4cfd-ba6e-3a9c9f8375aa.jpg" sizes="32x32"><link rel="icon" href="./images/3c3d281e-3a9d-4cfd-ba6e-3a9c9f8375aa.jpg" sizes="48x48"><link rel="icon" href="./images/3c3d281e-3a9d-4cfd-ba6e-3a9c9f8375aa.jpg" sizes="64x64"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tetelestai International Reports: Community Impact &amp;amp; Insights</title><meta name="description" content="Explore Tetelestai International Reports for impactful community insights and maternal health indicators in our publications."><meta name="author" content="Tetelestai International"><meta name="generator" content="Starfield Technologies; Go Daddy Website Builder 8.0.0000"><link rel="canonical" href="https://tetelestai.services/reports"><link rel="manifest" href="https://tetelestai.services/manifest.webmanifest"><link rel="apple-touch-icon" sizes="57x57" href="./images/blob-6457624.png"><link rel="apple-touch-icon" sizes="60x60" href="./images/blob-6457624.png"><link rel="apple-touch-icon" sizes="72x72" href="./images/blob-6457624.png"><link rel="apple-touch-icon" sizes="114x114" href="./images/blob-6457624.png"><link rel="apple-touch-icon" sizes="120x120" href="./images/blob-6457624.png"><link rel="apple-touch-icon" sizes="144x144" href="./images/blob-6457624.png"><link rel="apple-touch-icon" sizes="152x152" href="./images/blob-6457624.png"><link rel="apple-touch-icon" sizes="180x180" href="./images/blob-6457624.png"><meta property="og:url" content="https://tetelestai.services/reports">
 <meta property="og:site_name" content="Tetelestai International">
 <meta property="og:title" content="Tetelestai International">
@@ -541,48 +524,47 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
 <script>"use strict";Core.utils.onAllowCookieTracking(function () {const queryString = window.location.search;const urlParams = new URLSearchParams(queryString);const whiteList = ['gclid', 'fbclid', 'gdan_clid'];const belongToList = list => item => list.includes(item);const belongToWhiteList = belongToList(whiteList);Array.from(urlParams).forEach(param => {const [queryKey, queryResult] = param;if (!belongToWhiteList(queryKey)) return;localStorage.setItem(queryKey, queryResult);});});
 "use strict";Core.utils.onAllowCookieTracking(() => {function u() {if (crypto.randomUUID) return crypto.randomUUID();const b = crypto.getRandomValues(new Uint8Array(16));b[6] = b[6] & 15 | 64;b[8] = b[8] & 63 | 128;const h = [...b].map(x => x.toString(16).padStart(2, "0"));return `${h[0]}${h[1]}${h[2]}${h[3]}-${h[4]}${h[5]}-${h[6]}${h[7]}-${h[8]}${h[9]}-${h.slice(10).join("")}`;}if (!document.cookie.includes("x-visitor-id")) {!function (o, i, e = 60) {const t = new Date();t.setTime(t.getTime() + 864e5 * e);const n = `expires=${t.toUTCString()}`;document.cookie = `${o}=${i};${n};path=/`;}("x-visitor-id", u(), 60);}});</script><script type="module" src="./reports_files/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;1bd414b68a2140f6ba59bca0850b30b8&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
 <style type="text/css" data-glamor="cxs-media-sheet"></style>
-  <!-- THE CLEAN INTERACTIVE NAV OVERLAY COMPONENTS -->
-<div class="tetelestai-native-hamburger-trigger" id="tetelestai-hamburger-click-btn">☰</div>
 
-<div class="tetelestai-native-menu-drawer" id="tetelestai-native-link-panel">
-  <ul>
-    <li><a href="https://tetelestai.services">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li class="tetelestai-subitem"><a href="https://tetelestai.servicesabout-tetelestai">- About Tetelestai</a></li>
-    <li><a href="#">Initiatives</a></li>
-    <li class="tetelestai-subitem"><a href="https://tetelestai.serviceseducation">- Education</a></li>
-    <li class="tetelestai-subitem"><a href="https://tetelestai.servicesneonatal-kits">- Neonatal Kits</a></li>
-    <li class="tetelestai-subitem"><a href="https://tetelestai.servicesfood">- Food</a></li>
-    <li class="tetelestai-subitem"><a href="https://tetelestai.servicesclothes">- Clothes</a></li>
-    <li><a href="#">Publications</a></li>
-    <li class="tetelestai-subitem"><a href="https://tetelestai.servicese-newsletters">- E-Newsletters</a></li>
-    <li class="tetelestai-subitem"><a href="https://tetelestai.servicesreports">- Reports</a></li>
-    <li><a href="https://tetelestai.servicescontact-us-1">Contact Us</a></li>
-  </ul>
-</div>
-
-<!-- NATIVE HARD-WIRED INTERACTION EVENT DISPATCHER -->
+ <!-- TETELESTAI NATIVE NAVIGATION DRAWER ACCESSIBILITY BRIDGE -->
 <script type="text/javascript">
   (function() {
-    var toggleTrigger = document.getElementById('tetelestai-hamburger-click-btn');
-    var overlayPanel = document.getElementById('tetelestai-native-link-panel');
-    
-    if (toggleTrigger && overlayPanel) {
-      toggleTrigger.addEventListener('click', function(event) {
+    function wireAdaptiveMobileMenu() {
+      // Find the header hamburger link selector via its automated system data marker
+      var menuIcon = document.querySelector('[data-aid="HAMBURGER_MENU_LINK"]');
+      // Dynamically target the hidden mobile sidebar drawer layout via partial id wildcard matching
+      var sideDrawer = document.querySelector('div[data-ux="NavigationDrawer"][id*="-navId-mobile"]');
+      
+      if (!menuIcon || !sideDrawer) return;
+
+      // Duplicate the icon element node to completely scrub old, crashed GoDaddy event click loops
+      var functionalClone = menuIcon.cloneNode(true);
+      menuIcon.parentNode.replaceChild(functionalClone, menuIcon);
+
+      // Core touch action listener click event hook
+      functionalClone.addEventListener('click', function(event) {
         event.preventDefault();
         event.stopPropagation();
-        
-        if (overlayPanel.style.display === 'block') {
-          overlayPanel.style.display = 'none';
-          toggleTrigger.innerHTML = '☰';
-          toggleTrigger.style.backgroundColor = '#040430';
-        } else {
-          overlayPanel.style.display = 'block';
-          toggleTrigger.innerHTML = '✕'; // Morph toggle button icon into a distinct close X mark
-          toggleTrigger.style.backgroundColor = '#ff3b30'; /* Red close safety visual anchor color accent */
-        }
+        sideDrawer.classList.toggle('tetelestai-open-drawer');
       });
+
+      // Bind closing exit commands directly to the native 'X' close graphic symbol in the sidebar tray
+      var exitIcon = sideDrawer.querySelector('[data-ux="NavigationDrawerCloseIcon"]');
+      if (exitIcon) {
+        exitIcon.addEventListener('click', function(event) {
+          event.preventDefault();
+          sideDrawer.classList.remove('tetelestai-open-drawer');
+        });
+      }
     }
+
+    // Safely trigger layout listeners across DOM state generations
+    if (document.readyState === 'complete') {
+      wireAdaptiveMobileMenu();
+    } else {
+      window.addEventListener('load', wireAdaptiveMobileMenu);
+    }
+    document.addEventListener('DOMContentLoaded', wireAdaptiveMobileMenu);
   })();
 </script>
+
 </body></html>
