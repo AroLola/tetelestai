@@ -2,90 +2,98 @@
 <!-- saved from url=(0040)https://tetelestai.services/contact-us-1 -->
 <html lang="en-IN"><head>
  <!-- SYSTEM NAVIGATION RECOVERY - COLOR-SECURED SCROLLABLE MOBILE DRAWER -->
+<!-- STABLE ISOLATED NAV OVERLAY (CONTACT PAGE EDITION) -->
 <style>
+  /* Mobile Viewport Sizing Rules */
   @media (max-width: 767px) {
-    /* FORCES THE HAMBURGER BUTTON SVG LINES TO REMAIN CRISP WHITE ON ALL TABS */
-    a[data-aid="HAMBURGER_MENU_LINK"],
-    a[data-aid="HAMBURGER_MENU_LINK"] svg,
-    a[data-aid="HAMBURGER_MENU_LINK"] path,
-    [data-ux="IconHamburger"],
-    [data-ux="IconHamburger"] path {
-      color: #ffffff !important;
-      fill: #ffffff !important;
-      opacity: 1 !important;
+    /* 1. Force hide GoDaddy's native broken hamburger icon link to stop layout clashing */
+    a[data-aid="HAMBURGER_MENU_LINK"], 
+    div[id*="bs-"] {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      width: 0px !important;
+      height: 0px !important;
     }
 
-    /* FORCE SECURE DARK BACKGROUND: Overrides GoDaddy's contact section white-out rules */
-    #n-146342-navId-mobile,
-    #n-189678-navId-mobile,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"].tetelestai-open-drawer {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      transform: none !important;
+    /* 2. Build a crisp floating button wrapper directly onto the top corner screen row */
+    .tetelestai-contact-hamburger {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      position: fixed !important;
+      top: 15px !important;
+      right: 15px !important;
+      width: 44px !important;
+      height: 44px !important;
+      background-color: #040430 !important; /* Locks solid deep blue */
+      color: #ffffff !important;
+      border: 2px solid #ffffff !important;
+      border-radius: 6px !important;
+      font-size: 24px !important;
+      font-weight: bold !important;
+      z-index: 999999 !important;
+      cursor: pointer !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+    }
+
+    /* 3. Safe, full-screen vertical link dropdown tray sheet */
+    .tetelestai-contact-drawer {
+      display: none; /* Hidden until button click switches state */
       position: fixed !important;
       top: 0 !important;
       left: 0 !important;
       width: 100vw !important;
       height: 100vh !important;
-      
-      /* Explicitly locks the menu drawer to your dark corporate blue theme color */
-      background: #040430 !important; 
-      background-color: #040430 !important; 
-      
-      z-index: 999999 !important;
-      overflow-y: scroll !important; 
-      -webkit-overflow-scrolling: touch !important; 
-      padding: 80px 20px 60px 20px !important;
+      background: #040430 !important; /* Rigid background blocking form whites */
+      background-color: #040430 !important;
+      z-index: 999998 !important;
+      padding: 90px 25px 50px 25px !important;
       box-sizing: border-box !important;
+      overflow-y: scroll !important;
+      -webkit-overflow-scrolling: touch !important;
     }
 
-    /* Format parent and child list structures to stack vertically down the sidebar */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] li {
-      display: block !important;
-      width: 100% !important;
-      height: auto !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      text-align: left !important;
+    .tetelestai-contact-drawer ul {
+      list-style: none !important;
+      padding: 0 !important;
       margin: 0 !important;
-      padding: 8px 0 !important;
-      float: none !important;
-      background: transparent !important; /* Strips out any inherited container whites */
-      background-color: transparent !important;
     }
 
-    /* Force all nested overflow lists (Initiatives, Publications) to display fully unrolled inline */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [data-ux="NavigationDrawerList"] [role="menu"],
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [class*="Dropdown"] {
-      display: block !important; 
-      visibility: visible !important;
-      opacity: 1 !important;
-      position: relative !important;
-      margin-left: 20px !important;
-      padding-left: 12px !important;
-      border-left: 2px solid rgba(255, 255, 255, 0.15) !important;
-      height: auto !important;
-      background: transparent !important;
-      background-color: transparent !important;
+    .tetelestai-contact-drawer li {
+      padding: 12px 0 !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
 
-    /* Fix typography styling parameters for crisp smartphone readability */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] a,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] span {
+    .tetelestai-contact-drawer a {
       color: #ffffff !important;
-      font-size: 19px !important;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      font-size: 18px !important;
+      font-weight: bold !important;
       text-decoration: none !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.8px !important;
+      display: block !important;
     }
 
-    /* Style sub-navigation target links slightly smaller to indicate path hierarchy levels */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul a,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"] a {
-      font-size: 16px !important;
-      color: #d1d1d6 !important; /* Soft gray secondary contrast tone accent */
+    /* Format indent child directory page hierarchies cleanly */
+    .tetelestai-contact-drawer li.tetelestai-sub {
+      padding-left: 20px !important;
+      border-bottom: none !important;
+    }
+    
+    .tetelestai-contact-drawer li.tetelestai-sub a {
+      font-size: 15px !important;
+      color: #d1d1d6 !important;
+      text-transform: none !important;
+    }
+  }
+
+  /* Desktop Protection Constraints: Instantly hide mobile element layers */
+  @media (min-width: 768px) {
+    .tetelestai-contact-hamburger, 
+    .tetelestai-contact-drawer {
+      display: none !important;
     }
   }
 </style>
@@ -588,115 +596,50 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
 <!-- Core Google Maps Library scripts mapping correctly into your folder files path -->
 <script src="./contact-us-1_files/js(1)" async="async"></script>
 <script src="./contact-us-1_files/bs-genericMap-e615c89a.js.download" defer></script>
- 
-<!-- COLOR-SECURED SCROLLABLE MOBILE DRAWER (PURE HTML EDITION) -->
-<style>
-  @media (max-width: 767px) {
-    /* 1. Force the hamburger icon lines and SVG shapes to remain white on this page view */
-    a[data-aid="HAMBURGER_MENU_LINK"],
-    a[data-aid="HAMBURGER_MENU_LINK"] svg,
-    a[data-aid="HAMBURGER_MENU_LINK"] path,
-    [data-ux="IconHamburger"],
-    [data-ux="IconHamburger"] path {
-      color: #ffffff !important;
-      fill: #ffffff !important;
-      opacity: 1 !important;
-    }
+ <!-- THE INDEPENDENT NAV COMPONENT LAYERS -->
+<div class="tetelestai-contact-hamburger" id="tetelestai-contact-btn">☰</div>
 
-    /* 2. PURE HTML TARGET SWITCH: Opens the menu instantly when the URL matches the panel anchor link */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"]:target {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      transform: none !important;
-    }
+<div class="tetelestai-contact-drawer" id="tetelestai-contact-tray">
+  <ul>
+    <li><a href="https://tetelestai.services">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li class="tetelestai-sub"><a href="https://tetelestai.servicesabout-tetelestai">- About Tetelestai</a></li>
+    <li><a href="#">Initiatives</a></li>
+    <li class="tetelestai-sub"><a href="https://tetelestai.serviceseducation">- Education</a></li>
+    <li class="tetelestai-sub"><a href="https://tetelestai.servicesneonatal-kits">- Neonatal Kits</a></li>
+    <li class="tetelestai-sub"><a href="https://tetelestai.servicesfood">- Food</a></li>
+    <li class="tetelestai-sub"><a href="https://tetelestai.servicesclothes">- Clothes</a></li>
+    <li><a href="#">Publications</a></li>
+    <li class="tetelestai-sub"><a href="https://tetelestai.servicese-newsletters">- E-Newsletters</a></li>
+    <li class="tetelestai-sub"><a href="https://tetelestai.servicesreports">- Reports</a></li>
+    <li><a href="https://tetelestai.servicescontact-us-1">Contact Us</a></li>
+  </ul>
+</div>
 
-    /* 3. Base layout properties that secure a pristine deep dark blue background canvas */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] {
-      position: fixed !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 100vw !important;
-      height: 100vh !important;
-      background: #040430 !important; /* Locks out GoDaddy's white contact background bleed */
-      background-color: #040430 !important; 
-      z-index: 999999 !important;
-      overflow-y: scroll !important; 
-      -webkit-overflow-scrolling: touch !important; 
-      padding: 80px 20px 60px 20px !important;
-      box-sizing: border-box !important;
-    }
-
-    /* 4. Format parent and child list row panels to layout cleanly down the page frame */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] li {
-      display: block !important;
-      width: 100% !important;
-      height: auto !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      text-align: left !important;
-      margin: 0 !important;
-      padding: 8px 0 !important;
-      float: none !important;
-      background: transparent !important;
-      background-color: transparent !important;
-    }
-
-    /* 5. Force all nested page sub-menus (Initiatives, Publications) to display fully unrolled inline */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [data-ux="NavigationDrawerList"] [role="menu"],
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [class*="Dropdown"] {
-      display: block !important; 
-      visibility: visible !important;
-      opacity: 1 !important;
-      position: relative !important;
-      margin-left: 20px !important;
-      padding-left: 12px !important;
-      border-left: 2px solid rgba(255, 255, 255, 0.15) !important;
-      height: auto !important;
-      background: transparent !important;
-      background-color: transparent !important;
-    }
-
-    /* 6. Enforce crisp text color readability attributes */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] a,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] span {
-      color: #ffffff !important;
-      font-size: 19px !important;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-      text-decoration: none !important;
-    }
-
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul a,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"] a {
-      font-size: 16px !important;
-      color: #d1d1d6 !important;
-    }
-  }
-</style>
-
-<!-- 7. AUTOMATED ROUTING ENGINE: Points the native buttons over to the pure HTML panel anchors -->
+<!-- HARD-WIRED INTERACTION EVENT SWITCH -->
 <script type="text/javascript">
   (function() {
-    var menuLink = document.querySelector('[data-aid="HAMBURGER_MENU_LINK"]');
-    var navDrawer = document.querySelector('div[data-ux="NavigationDrawer"][id*="-navId-mobile"]');
+    var btn = document.getElementById('tetelestai-contact-btn');
+    var drawer = document.getElementById('tetelestai-contact-tray');
     
-    if (menuLink && navDrawer) {
-      var currentId = navDrawer.getAttribute('id');
-      // Changes the click address to target the wrapper directly via its physical ID anchor point
-      menuLink.setAttribute('href', '#' + currentId);
-      
-      // Points GoDaddy's default 'X' exit icon back to an empty hash to fold the menu shut natively
-      var exitIcon = navDrawer.querySelector('[data-ux="NavigationDrawerCloseIcon"]');
-      if (exitIcon) {
-        exitIcon.setAttribute('href', '#');
-        // Clears old click behaviors so it relies entirely on the pure URL route shift
-        var cleanExit = exitIcon.cloneNode(true);
-        exitIcon.parentNode.replaceChild(cleanExit, exitIcon);
-      }
+    if (btn && drawer) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (drawer.style.display === 'block') {
+          drawer.style.display = 'none';
+          btn.innerHTML = '☰';
+          btn.style.backgroundColor = '#040430';
+        } else {
+          drawer.style.display = 'block';
+          btn.innerHTML = '✕'; // Morph toggle button icon into a distinct close X mark
+          btn.style.backgroundColor = '#ff3b30'; /* Red close safety color anchor */
+        }
+      });
     }
   })();
 </script>
+
 </body>
 </html>
