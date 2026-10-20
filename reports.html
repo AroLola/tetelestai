@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <!-- saved from url=(0035)https://tetelestai.services/reports -->
 <html lang="en-IN"><head>
- <!-- SYSTEM NAVIGATION RECOVERY - AUTOMATICALLY UNROLLS ALL HIDDEN MOBILE DRAWER SUB-MENUS -->
+  <!-- SYSTEM NAVIGATION RECOVERY - FULLY EXPANDED SCROLLABLE MOBILE DRAWER -->
 <style>
   @media (max-width: 767px) {
     /* FORCES THE HAMBURGER BUTTON SVG LINES TO REMAIN CRISP WHITE ON ALL TABS */
@@ -15,7 +15,7 @@
       opacity: 1 !important;
     }
 
-    /* 1. Force both possible mobile container panel ids to display fully open when toggled active */
+    /* 1. Force both possible mobile container panel ids to display fully open and vertically scrollable */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"].tetelestai-open-drawer {
       display: block !important;
       visibility: visible !important;
@@ -28,8 +28,12 @@
       height: 100vh !important;
       background-color: #040430 !important; /* Elegant corporate deep blue organizational theme */
       z-index: 999999 !important;
-      overflow-y: auto !important;
-      padding: 80px 20px 40px 20px !important;
+      
+      /* THE SPACING FIX: Enables absolute vertical swiping so no links are trapped off-screen */
+      overflow-y: scroll !important; 
+      -webkit-overflow-scrolling: touch !important; /* Forces buttery-smooth finger scrolling on iOS devices */
+      
+      padding: 80px 20px 60px 20px !important;
       box-sizing: border-box !important;
     }
 
@@ -47,17 +51,18 @@
       float: none !important;
     }
 
-    /* 3. Force all nested overflow lists (Initiatives, Publications, Contact) to unroll inline */
+    /* 3. Force all nested overflow lists (Initiatives, Publications, Contact) to display fully unrolled inline */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul,
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [data-ux="NavigationDrawerList"] [role="menu"],
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [class*="Dropdown"] {
-      display: block !important;
+      display: block !important; 
       visibility: visible !important;
       opacity: 1 !important;
       position: relative !important;
       margin-left: 20px !important;
       padding-left: 12px !important;
       border-left: 2px solid rgba(255, 255, 255, 0.15) !important;
+      height: auto !important;
     }
 
     /* 4. Fix typography styling parameters for crisp smartphone readability */
@@ -525,7 +530,7 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
 "use strict";Core.utils.onAllowCookieTracking(() => {function u() {if (crypto.randomUUID) return crypto.randomUUID();const b = crypto.getRandomValues(new Uint8Array(16));b[6] = b[6] & 15 | 64;b[8] = b[8] & 63 | 128;const h = [...b].map(x => x.toString(16).padStart(2, "0"));return `${h[0]}${h[1]}${h[2]}${h[3]}-${h[4]}${h[5]}-${h[6]}${h[7]}-${h[8]}${h[9]}-${h.slice(10).join("")}`;}if (!document.cookie.includes("x-visitor-id")) {!function (o, i, e = 60) {const t = new Date();t.setTime(t.getTime() + 864e5 * e);const n = `expires=${t.toUTCString()}`;document.cookie = `${o}=${i};${n};path=/`;}("x-visitor-id", u(), 60);}});</script><script type="module" src="./reports_files/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;1bd414b68a2140f6ba59bca0850b30b8&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
 <style type="text/css" data-glamor="cxs-media-sheet"></style>
 
- <!-- TETELESTAI NATIVE NAVIGATION DRAWER ACCESSIBILITY BRIDGE -->
+<!-- TETELESTAI NATIVE NAVIGATION DRAWER ACCESSIBILITY BRIDGE -->
 <script type="text/javascript">
   (function() {
     function wireAdaptiveMobileMenu() {
@@ -566,5 +571,6 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
     document.addEventListener('DOMContentLoaded', wireAdaptiveMobileMenu);
   })();
 </script>
+
 
 </body></html>
