@@ -718,7 +718,7 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
 <script>"use strict";Core.utils.onAllowCookieTracking(function () {const queryString = window.location.search;const urlParams = new URLSearchParams(queryString);const whiteList = ['gclid', 'fbclid', 'gdan_clid'];const belongToList = list => item => list.includes(item);const belongToWhiteList = belongToList(whiteList);Array.from(urlParams).forEach(param => {const [queryKey, queryResult] = param;if (!belongToWhiteList(queryKey)) return;localStorage.setItem(queryKey, queryResult);});});
 "use strict";Core.utils.onAllowCookieTracking(() => {function u() {if (crypto.randomUUID) return crypto.randomUUID();const b = crypto.getRandomValues(new Uint8Array(16));b[6] = b[6] & 15 | 64;b[8] = b[8] & 63 | 128;const h = [...b].map(x => x.toString(16).padStart(2, "0"));return `${h[0]}${h[1]}${h[2]}${h[3]}-${h[4]}${h[5]}-${h[6]}${h[7]}-${h[8]}${h[9]}-${h.slice(10).join("")}`;}if (!document.cookie.includes("x-visitor-id")) {!function (o, i, e = 60) {const t = new Date();t.setTime(t.getTime() + 864e5 * e);const n = `expires=${t.toUTCString()}`;document.cookie = `${o}=${i};${n};path=/`;}("x-visitor-id", u(), 60);}});</script><script type="module" src="./neonatal-kits_files/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;1bd414b68a2140f6ba59bca0850b30b8&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
 
- <!-- THE CLEAN INTERACTIVE NAV OVERLAY COMPONENTS -->
+  <!-- THE CLEAN INTERACTIVE NAV OVERLAY COMPONENTS -->
 <div class="tetelestai-native-hamburger-trigger" id="tetelestai-hamburger-click-btn">☰</div>
 
 <div class="tetelestai-native-menu-drawer" id="tetelestai-native-link-panel">
@@ -762,5 +762,4 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
     }
   })();
 </script>
-
 </body></html>
