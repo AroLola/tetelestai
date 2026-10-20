@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <!-- saved from url=(0041)https://tetelestai.services/neonatal-kits -->
 <html lang="en-IN"><head> 
-<!-- SYSTEM RECONSTRUCTION - MOBILE NAVIGATION DRAWER AND COLOR STABILIZER -->
+<!-- SYSTEM RECONSTRUCTION - AUTOMATIC CLOSING DROPDOWN LOOPER -->
 <style>
   @media (max-width: 767px) {
     /* 1. Force the hamburger icon lines and SVG shapes to remain white on all tabs */
@@ -15,12 +15,19 @@
       opacity: 1 !important;
     }
 
-    /* 2. Force the mobile layout container panel drawer to display open when toggled active */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"].tetelestai-active-drawer {
+    /* 2. PURE CSS TRIGGER: When a user taps the button container, automatically expand the panel drawer */
+    div[data-ux="Element"]:focus-within div[data-ux="NavigationDrawer"][id*="-navId-mobile"],
+    div[data-ux="Block"]:focus-within div[data-ux="NavigationDrawer"][id*="-navId-mobile"],
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"]:hover {
       display: block !important;
       visibility: visible !important;
       opacity: 1 !important;
       transform: none !important;
+    }
+
+    /* 3. Base layout settings for both possible mobile slide-out container panels */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] {
+      display: none; /* Hidden until tap focuses inside parent headers */
       position: fixed !important;
       top: 0 !important;
       left: 0 !important;
@@ -33,7 +40,7 @@
       box-sizing: border-box !important;
     }
 
-    /* 3. Format parent and child list row blocks to stack vertically down the sidebar */
+    /* 4. Format parent and child list row blocks to stack vertically down the sidebar */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul,
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] li {
       display: block !important;
@@ -47,7 +54,7 @@
       float: none !important;
     }
 
-    /* 4. Force all nested overflow lists (Initiatives, Publications) to unroll inline */
+    /* 5. Force all nested overflow lists (Initiatives, Publications) to unroll inline */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul,
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [data-ux="NavigationDrawerList"] [role="menu"],
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [class*="Dropdown"] {
@@ -60,7 +67,7 @@
       border-left: 2px solid rgba(255, 255, 255, 0.15) !important;
     }
 
-    /* 5. Sanitize text readability formats across menu links */
+    /* 6. Sanitize text readability formats across menu links */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] a,
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] span {
       color: #ffffff !important;
@@ -73,7 +80,7 @@
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul a,
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"] a {
       font-size: 16px !important;
-      color: #d1d1d6 !important; /* Soft gray secondary contrast tone accent */
+      color: #d1d1d6 !important;
     }
   }
 </style>
