@@ -496,29 +496,129 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
 <script>"use strict";Core.utils.onAllowCookieTracking(function () {const queryString = window.location.search;const urlParams = new URLSearchParams(queryString);const whiteList = ['gclid', 'fbclid', 'gdan_clid'];const belongToList = list => item => list.includes(item);const belongToWhiteList = belongToList(whiteList);Array.from(urlParams).forEach(param => {const [queryKey, queryResult] = param;if (!belongToWhiteList(queryKey)) return;localStorage.setItem(queryKey, queryResult);});});
 "use strict";Core.utils.onAllowCookieTracking(() => {function u() {if (crypto.randomUUID) return crypto.randomUUID();const b = crypto.getRandomValues(new Uint8Array(16));b[6] = b[6] & 15 | 64;b[8] = b[8] & 63 | 128;const h = [...b].map(x => x.toString(16).padStart(2, "0"));return `${h[0]}${h[1]}${h[2]}${h[3]}-${h[4]}${h[5]}-${h[6]}${h[7]}-${h[8]}${h[9]}-${h.slice(10).join("")}`;}if (!document.cookie.includes("x-visitor-id")) {!function (o, i, e = 60) {const t = new Date();t.setTime(t.getTime() + 864e5 * e);const n = `expires=${t.toUTCString()}`;document.cookie = `${o}=${i};${n};path=/`;}("x-visitor-id", u(), 60);}});</script><script type="module" src="./about-tetelestai_files/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;1bd414b68a2140f6ba59bca0850b30b8&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
 
- <!-- TETELESTAI NATIVE NAVIGATION DRAWER ACCESSIBILITY BRIDGE -->
+<!-- ========================================================================= -->
+<!-- STEP 1: MOBILE STYLES - HANDLES WHITE HAMBURGER COLOR & ACCORDION DISPLAY -->
+<!-- ========================================================================= -->
+<style>
+  @media (max-width: 767px) {
+    /* Forces the header hamburger icon lines and SVG shapes to stay crisp white on all tabs */
+    a[data-aid="HAMBURGER_MENU_LINK"],
+    a[data-aid="HAMBURGER_MENU_LINK"] svg,
+    a[data-aid="HAMBURGER_MENU_LINK"] path,
+    [data-ux="IconHamburger"],
+    [data-ux="IconHamburger"] path {
+      color: #ffffff !important;
+      fill: #ffffff !important;
+      opacity: 1 !important;
+    }
+
+    /* Forces your mobile drawer layout container panel to display open when toggled active */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"].tetelestai-open-drawer {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background-color: #040430 !important; /* Elegant organizational deep corporate blue theme */
+      z-index: 999999 !important;
+      overflow-y: auto !important;
+      padding: 75px 20px 40px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Format navigation rows to stack vertically down the mobile drawer space */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] li {
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      text-align: left !important;
+      margin: 0 !important;
+      padding: 8px 0 !important;
+      float: none !important;
+    }
+
+    /* COLLAPSED BY DEFAULT: Hide sub-navigation blocks initially to keep menu height compact */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [data-ux="NavigationDrawerList"] [role="menu"],
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [class*="Dropdown"] {
+      display: none !important; 
+      visibility: hidden !important;
+      opacity: 0 !important;
+      position: relative !important;
+      margin-left: 20px !important;
+      padding-left: 12px !important;
+      border-left: 2px solid rgba(255, 255, 255, 0.15) !important;
+    }
+
+    /* EXPANSION STATE LAYER: Smoothly unrolls inner category sub-links when class flag is active */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul.tetelestai-submenu-visible,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"].tetelestai-submenu-visible {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    /* ACCORDION VISUAL HIGHLIGHTS: Adds an elegant toggle arrow next to dropdown categories */
+    .tetelestai-accordion-trigger::after {
+      content: ' ▾' !important;
+      display: inline-block !important;
+      transition: transform 0.2s ease !important;
+      color: rgba(255, 255, 255, 0.4) !important;
+      margin-left: 6px !important;
+    }
+    .tetelestai-arrow-rotated::after {
+      transform: rotate(180deg) !important;
+      color: #ffffff !important;
+    }
+
+    /* Standardizes text visibility rules for phone screens */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] a,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] span {
+      color: #ffffff !important;
+      font-size: 19px !important;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      text-decoration: none !important;
+    }
+
+    /* Formats interior sub-directory links slightly smaller to indicate layout depth layers */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul a,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"] a {
+      font-size: 16px !important;
+      color: #d1d1d6 !important; /* Soft gray contrast tone accent */
+    }
+  }
+</style>
+
+<!-- ========================================================================= -->
+<!-- STEP 2: JAVASCRIPT ENGINE - HANDLES CLICKS & COLLAPSIBLE DRAWER INTERACTION -->
+<!-- ========================================================================= -->
 <script type="text/javascript">
   (function() {
     function wireAdaptiveMobileMenu() {
-      // Find the header hamburger link selector via its automated system data marker
       var menuIcon = document.querySelector('[data-aid="HAMBURGER_MENU_LINK"]');
-      // Dynamically target the hidden mobile sidebar drawer layout via partial id wildcard matching
       var sideDrawer = document.querySelector('div[data-ux="NavigationDrawer"][id*="-navId-mobile"]');
       
       if (!menuIcon || !sideDrawer) return;
 
-      // Duplicate the icon element node to completely scrub old, crashed GoDaddy event click loops
+      // 1. Scrub GoDaddy's crashed framework listeners by cloning the hamburger button natively
       var functionalClone = menuIcon.cloneNode(true);
       menuIcon.parentNode.replaceChild(functionalClone, menuIcon);
 
-      // Core touch action listener click event hook
+      // Main header hamburger icon tap trigger loop
       functionalClone.addEventListener('click', function(event) {
         event.preventDefault();
         event.stopPropagation();
         sideDrawer.classList.toggle('tetelestai-open-drawer');
       });
 
-      // Bind closing exit commands directly to the native 'X' close graphic symbol in the sidebar tray
+      // Bind close functions directly to the native built-in 'X' exit icon layer inside the drawer
       var exitIcon = sideDrawer.querySelector('[data-ux="NavigationDrawerCloseIcon"]');
       if (exitIcon) {
         exitIcon.addEventListener('click', function(event) {
@@ -526,9 +626,48 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
           sideDrawer.classList.remove('tetelestai-open-drawer');
         });
       }
+
+      // 2. ACCORDION SYSTEM MANAGER: Identifies and monitors structural category headers
+      var categoryHeaders = sideDrawer.querySelectorAll('li > div > a, li[role="menuitem"] > span > div > a, li > a[aria-haspopup="menu"]');
+      
+      categoryHeaders.forEach(function(header) {
+        // Locate the companion sub-dropdown menu sitting underneath it
+        var dropdownList = header.nextElementSibling || header.parentNode.querySelector('ul') || header.parentNode.querySelector('[role="menu"]');
+        
+        if (dropdownList) {
+          // Flag expandable parents to apply arrow decorators via our header CSS rule
+          header.classList.add('tetelestai-accordion-trigger');
+          
+          header.addEventListener('click', function(e) {
+            var targetHref = header.getAttribute('href') || '';
+            
+            // If the element clicked is a category title spacer pointer link (ends in #)
+            if (targetHref === '#' || targetHref.endsWith('#') || header.getAttribute('aria-haspopup') === 'menu') {
+              e.preventDefault();
+              e.stopPropagation();
+              
+              var isAlreadyOpen = dropdownList.classList.contains('tetelestai-submenu-visible');
+              
+              // Close any other open sub-lists to save screen workspace space
+              sideDrawer.querySelectorAll('ul ul, [role="menu"], [class*="Dropdown"]').forEach(function(el) {
+                el.classList.remove('tetelestai-submenu-visible');
+              });
+              sideDrawer.querySelectorAll('.tetelestai-accordion-trigger').forEach(function(btn) {
+                btn.classList.remove('tetelestai-arrow-rotated');
+              });
+
+              // Toggle visibility on our current clicked dropdown section tree branch
+              if (!isAlreadyOpen) {
+                dropdownList.classList.add('tetelestai-submenu-visible');
+                header.classList.add('tetelestai-arrow-rotated');
+              }
+            }
+          });
+        }
+      });
     }
 
-    // Safely trigger layout listeners across DOM state generations
+    // Safely fire script manager operations across DOM lifecycle transitions
     if (document.readyState === 'complete') {
       wireAdaptiveMobileMenu();
     } else {
