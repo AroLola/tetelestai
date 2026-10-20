@@ -1,11 +1,22 @@
  <!DOCTYPE html>
 <!-- saved from url=(0041)https://tetelestai.services/neonatal-kits -->
 <html lang="en-IN"><head> 
- <!-- SYSTEM NAVIGATION RECOVERY - AUTOMATICALLY UNROLLS ALL HIDDEN MOBILE DRAWER SUB-MENUS -->
+<!-- SYSTEM RECONSTRUCTION - MOBILE NAVIGATION DRAWER AND COLOR STABILIZER -->
 <style>
   @media (max-width: 767px) {
-    /* 1. Force both possible mobile container panel ids to display fully open when toggled active */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"].tetelestai-open-drawer {
+    /* 1. Force the hamburger icon lines and SVG shapes to remain white on all tabs */
+    a[data-aid="HAMBURGER_MENU_LINK"],
+    a[data-aid="HAMBURGER_MENU_LINK"] svg,
+    a[data-aid="HAMBURGER_MENU_LINK"] path,
+    [data-ux="IconHamburger"],
+    [data-ux="IconHamburger"] path {
+      color: #ffffff !important;
+      fill: #ffffff !important;
+      opacity: 1 !important;
+    }
+
+    /* 2. Force the mobile layout container panel drawer to display open when toggled active */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"].tetelestai-active-drawer {
       display: block !important;
       visibility: visible !important;
       opacity: 1 !important;
@@ -15,14 +26,14 @@
       left: 0 !important;
       width: 100vw !important;
       height: 100vh !important;
-      background-color: #040430 !important; /* Elegant corporate deep blue organizational theme */
+      background-color: #040430 !important; /* Matches your organizational dark blue theme */
       z-index: 999999 !important;
       overflow-y: auto !important;
-      padding: 80px 20px 40px 20px !important;
+      padding: 75px 20px 40px 20px !important;
       box-sizing: border-box !important;
     }
 
-    /* 2. Format parent and child list structures to stack vertically down the sidebar */
+    /* 3. Format parent and child list row blocks to stack vertically down the sidebar */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul,
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] li {
       display: block !important;
@@ -36,7 +47,7 @@
       float: none !important;
     }
 
-    /* 3. Force all nested overflow lists (Initiatives, Publications, Contact) to unroll inline */
+    /* 4. Force all nested overflow lists (Initiatives, Publications) to unroll inline */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul,
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [data-ux="NavigationDrawerList"] [role="menu"],
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [class*="Dropdown"] {
@@ -49,7 +60,7 @@
       border-left: 2px solid rgba(255, 255, 255, 0.15) !important;
     }
 
-    /* 4. Fix typography styling parameters for crisp smartphone readability */
+    /* 5. Sanitize text readability formats across menu links */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] a,
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] span {
       color: #ffffff !important;
@@ -58,7 +69,7 @@
       text-decoration: none !important;
     }
 
-    /* Style sub-navigation target links slightly smaller to indicate path hierarchy levels */
+    /* Style sub-navigation target links slightly smaller to indicate depth levels */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul a,
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"] a {
       font-size: 16px !important;
