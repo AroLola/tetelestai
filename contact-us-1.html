@@ -1,7 +1,7 @@
  <!DOCTYPE html>
 <!-- saved from url=(0040)https://tetelestai.services/contact-us-1 -->
 <html lang="en-IN"><head>
- <!-- SYSTEM NAVIGATION RECOVERY - AUTOMATICALLY UNROLLS ALL HIDDEN MOBILE DRAWER SUB-MENUS -->
+ <!-- SYSTEM NAVIGATION RECOVERY - FULLY EXPANDED SCROLLABLE MOBILE DRAWER -->
 <style>
   @media (max-width: 767px) {
     /* FORCES THE HAMBURGER BUTTON SVG LINES TO REMAIN CRISP WHITE ON ALL TABS */
@@ -15,7 +15,7 @@
       opacity: 1 !important;
     }
 
-    /* 1. Force both possible mobile container panel ids to display fully open when toggled active */
+    /* 1. Force both possible mobile container panel ids to display fully open and vertically scrollable */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"].tetelestai-open-drawer {
       display: block !important;
       visibility: visible !important;
@@ -28,8 +28,12 @@
       height: 100vh !important;
       background-color: #040430 !important; /* Elegant corporate deep blue organizational theme */
       z-index: 999999 !important;
-      overflow-y: auto !important;
-      padding: 80px 20px 40px 20px !important;
+      
+      /* THE SPACING FIX: Enables absolute vertical swiping so no links are trapped off-screen */
+      overflow-y: scroll !important; 
+      -webkit-overflow-scrolling: touch !important; /* Forces buttery-smooth finger scrolling on iOS devices */
+      
+      padding: 80px 20px 60px 20px !important;
       box-sizing: border-box !important;
     }
 
@@ -47,17 +51,18 @@
       float: none !important;
     }
 
-    /* 3. Force all nested overflow lists (Initiatives, Publications, Contact) to unroll inline */
+    /* 3. Force all nested overflow lists (Initiatives, Publications, Contact) to display fully unrolled inline */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul,
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [data-ux="NavigationDrawerList"] [role="menu"],
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [class*="Dropdown"] {
-      display: block !important;
+      display: block !important; 
       visibility: visible !important;
       opacity: 1 !important;
       position: relative !important;
       margin-left: 20px !important;
       padding-left: 12px !important;
       border-left: 2px solid rgba(255, 255, 255, 0.15) !important;
+      height: auto !important;
     }
 
     /* 4. Fix typography styling parameters for crisp smartphone readability */
@@ -616,5 +621,6 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
     document.addEventListener('DOMContentLoaded', wireAdaptiveMobileMenu);
   })();
 </script>
+
 </body>
 </html>
