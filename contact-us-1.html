@@ -589,39 +589,113 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
 <script src="./contact-us-1_files/js(1)" async="async"></script>
 <script src="./contact-us-1_files/bs-genericMap-e615c89a.js.download" defer></script>
  
-<!-- TETELESTAI NATIVE NAVIGATION DRAWER ACCESSIBILITY BRIDGE -->
+<!-- COLOR-SECURED SCROLLABLE MOBILE DRAWER (PURE HTML EDITION) -->
+<style>
+  @media (max-width: 767px) {
+    /* 1. Force the hamburger icon lines and SVG shapes to remain white on this page view */
+    a[data-aid="HAMBURGER_MENU_LINK"],
+    a[data-aid="HAMBURGER_MENU_LINK"] svg,
+    a[data-aid="HAMBURGER_MENU_LINK"] path,
+    [data-ux="IconHamburger"],
+    [data-ux="IconHamburger"] path {
+      color: #ffffff !important;
+      fill: #ffffff !important;
+      opacity: 1 !important;
+    }
+
+    /* 2. PURE HTML TARGET SWITCH: Opens the menu instantly when the URL matches the panel anchor link */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"]:target {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* 3. Base layout properties that secure a pristine deep dark blue background canvas */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      background: #040430 !important; /* Locks out GoDaddy's white contact background bleed */
+      background-color: #040430 !important; 
+      z-index: 999999 !important;
+      overflow-y: scroll !important; 
+      -webkit-overflow-scrolling: touch !important; 
+      padding: 80px 20px 60px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* 4. Format parent and child list row panels to layout cleanly down the page frame */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] li {
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      text-align: left !important;
+      margin: 0 !important;
+      padding: 8px 0 !important;
+      float: none !important;
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    /* 5. Force all nested page sub-menus (Initiatives, Publications) to display fully unrolled inline */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [data-ux="NavigationDrawerList"] [role="menu"],
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [class*="Dropdown"] {
+      display: block !important; 
+      visibility: visible !important;
+      opacity: 1 !important;
+      position: relative !important;
+      margin-left: 20px !important;
+      padding-left: 12px !important;
+      border-left: 2px solid rgba(255, 255, 255, 0.15) !important;
+      height: auto !important;
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    /* 6. Enforce crisp text color readability attributes */
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] a,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] span {
+      color: #ffffff !important;
+      font-size: 19px !important;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      text-decoration: none !important;
+    }
+
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul a,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"] a {
+      font-size: 16px !important;
+      color: #d1d1d6 !important;
+    }
+  }
+</style>
+
+<!-- 7. AUTOMATED ROUTING ENGINE: Points the native buttons over to the pure HTML panel anchors -->
 <script type="text/javascript">
   (function() {
-    function wireAdaptiveMobileMenu() {
-      var menuIcon = document.querySelector('[data-aid="HAMBURGER_MENU_LINK"]');
-      var sideDrawer = document.querySelector('div[data-ux="NavigationDrawer"][id*="-navId-mobile"]');
+    var menuLink = document.querySelector('[data-aid="HAMBURGER_MENU_LINK"]');
+    var navDrawer = document.querySelector('div[data-ux="NavigationDrawer"][id*="-navId-mobile"]');
+    
+    if (menuLink && navDrawer) {
+      var currentId = navDrawer.getAttribute('id');
+      // Changes the click address to target the wrapper directly via its physical ID anchor point
+      menuLink.setAttribute('href', '#' + currentId);
       
-      if (!menuIcon || !sideDrawer) return;
-
-      var functionalClone = menuIcon.cloneNode(true);
-      menuIcon.parentNode.replaceChild(functionalClone, menuIcon);
-
-      functionalClone.addEventListener('click', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        sideDrawer.classList.toggle('tetelestai-open-drawer');
-      });
-
-      var exitIcon = sideDrawer.querySelector('[data-ux="NavigationDrawerCloseIcon"]');
+      // Points GoDaddy's default 'X' exit icon back to an empty hash to fold the menu shut natively
+      var exitIcon = navDrawer.querySelector('[data-ux="NavigationDrawerCloseIcon"]');
       if (exitIcon) {
-        exitIcon.addEventListener('click', function(event) {
-          event.preventDefault();
-          sideDrawer.classList.remove('tetelestai-open-drawer');
-        });
+        exitIcon.setAttribute('href', '#');
+        // Clears old click behaviors so it relies entirely on the pure URL route shift
+        var cleanExit = exitIcon.cloneNode(true);
+        exitIcon.parentNode.replaceChild(cleanExit, exitIcon);
       }
     }
-
-    if (document.readyState === 'complete') {
-      wireAdaptiveMobileMenu();
-    } else {
-      window.addEventListener('load', wireAdaptiveMobileMenu);
-    }
-    document.addEventListener('DOMContentLoaded', wireAdaptiveMobileMenu);
   })();
 </script>
 </body>
