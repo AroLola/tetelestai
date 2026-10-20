@@ -495,7 +495,6 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
 <script defer="" src="./about-tetelestai_files/scc-c2.min.js.download" crossorigin=""></script>
 <script>"use strict";Core.utils.onAllowCookieTracking(function () {const queryString = window.location.search;const urlParams = new URLSearchParams(queryString);const whiteList = ['gclid', 'fbclid', 'gdan_clid'];const belongToList = list => item => list.includes(item);const belongToWhiteList = belongToList(whiteList);Array.from(urlParams).forEach(param => {const [queryKey, queryResult] = param;if (!belongToWhiteList(queryKey)) return;localStorage.setItem(queryKey, queryResult);});});
 "use strict";Core.utils.onAllowCookieTracking(() => {function u() {if (crypto.randomUUID) return crypto.randomUUID();const b = crypto.getRandomValues(new Uint8Array(16));b[6] = b[6] & 15 | 64;b[8] = b[8] & 63 | 128;const h = [...b].map(x => x.toString(16).padStart(2, "0"));return `${h[0]}${h[1]}${h[2]}${h[3]}-${h[4]}${h[5]}-${h[6]}${h[7]}-${h[8]}${h[9]}-${h.slice(10).join("")}`;}if (!document.cookie.includes("x-visitor-id")) {!function (o, i, e = 60) {const t = new Date();t.setTime(t.getTime() + 864e5 * e);const n = `expires=${t.toUTCString()}`;document.cookie = `${o}=${i};${n};path=/`;}("x-visitor-id", u(), 60);}});</script><script type="module" src="./about-tetelestai_files/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;1bd414b68a2140f6ba59bca0850b30b8&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
-
 <!-- ========================================================================= -->
 <!-- STEP 1: MOBILE STYLES - HANDLES WHITE HAMBURGER COLOR & ACCORDION DISPLAY -->
 <!-- ========================================================================= -->
@@ -542,6 +541,7 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
       margin: 0 !important;
       padding: 8px 0 !important;
       float: none !important;
+      overflow: visible !important; /* Prevents containers from hiding expanding sub-menus */
     }
 
     /* COLLAPSED BY DEFAULT: Hide sub-navigation blocks initially to keep menu height compact */
@@ -555,14 +555,18 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
       margin-left: 20px !important;
       padding-left: 12px !important;
       border-left: 2px solid rgba(255, 255, 255, 0.15) !important;
+      height: 0px !important;
     }
 
     /* EXPANSION STATE LAYER: Smoothly unrolls inner category sub-links when class flag is active */
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul.tetelestai-submenu-visible,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"].tetelestai-submenu-visible {
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"].tetelestai-submenu-visible,
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] li.tetelestai-parent-expanded [role="menu"],
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] li.tetelestai-parent-expanded ul {
       display: block !important;
       visibility: visible !important;
       opacity: 1 !important;
+      height: auto !important; /* Force breaks fixed height container traps */
     }
 
     /* ACCORDION VISUAL HIGHLIGHTS: Adds an elegant toggle arrow next to dropdown categories */
@@ -571,7 +575,7 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
       display: inline-block !important;
       transition: transform 0.2s ease !important;
       color: rgba(255, 255, 255, 0.4) !important;
-      margin-left: 6px !important;
+      margin-left: 8px !important;
     }
     .tetelestai-arrow-rotated::after {
       transform: rotate(180deg) !important;
@@ -628,21 +632,25 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
       }
 
       // 2. ACCORDION SYSTEM MANAGER: Identifies and monitors structural category headers
-      var categoryHeaders = sideDrawer.querySelectorAll('li > div > a, li[role="menuitem"] > span > div > a, li > a[aria-haspopup="menu"]');
+      var categoryHeaders = sideDrawer.querySelectorAll('li a, li span, [data-ux="NavigationDrawerLink"]');
       
       categoryHeaders.forEach(function(header) {
-        // Locate the companion sub-dropdown menu sitting underneath it
-        var dropdownList = header.nextElementSibling || header.parentNode.querySelector('ul') || header.parentNode.querySelector('[role="menu"]');
+        // Find closest parent list item row
+        var parentLi = header.closest('li');
+        if (!parentLi) return;
+
+        // Locate companion sub dropdown element inside this list item block
+        var dropdownList = parentLi.querySelector('ul') || parentLi.querySelector('[role="menu"]') || parentLi.querySelector('[class*="Dropdown"]');
         
-        if (dropdownList) {
+        if (dropdownList && dropdownList !== header) {
           // Flag expandable parents to apply arrow decorators via our header CSS rule
           header.classList.add('tetelestai-accordion-trigger');
           
           header.addEventListener('click', function(e) {
             var targetHref = header.getAttribute('href') || '';
             
-            // If the element clicked is a category title spacer pointer link (ends in #)
-            if (targetHref === '#' || targetHref.endsWith('#') || header.getAttribute('aria-haspopup') === 'menu') {
+            // Trigger collapse adjustment if it acts as a layout placeholder or category header
+            if (targetHref === '#' || targetHref.endsWith('#') || header.getAttribute('aria-haspopup') === 'menu' || !header.hasAttribute('href')) {
               e.preventDefault();
               e.stopPropagation();
               
@@ -655,11 +663,15 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
               sideDrawer.querySelectorAll('.tetelestai-accordion-trigger').forEach(function(btn) {
                 btn.classList.remove('tetelestai-arrow-rotated');
               });
+              sideDrawer.querySelectorAll('li').forEach(function(li) {
+                li.classList.remove('tetelestai-parent-expanded');
+              });
 
               // Toggle visibility on our current clicked dropdown section tree branch
               if (!isAlreadyOpen) {
                 dropdownList.classList.add('tetelestai-submenu-visible');
                 header.classList.add('tetelestai-arrow-rotated');
+                parentLi.classList.add('tetelestai-parent-expanded'); // Unlocks layout limits
               }
             }
           });
@@ -676,5 +688,4 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
     document.addEventListener('DOMContentLoaded', wireAdaptiveMobileMenu);
   })();
 </script>
-
 </body></html>
