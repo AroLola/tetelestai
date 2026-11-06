@@ -568,7 +568,7 @@ if ('serviceWorker' in navigator) {
  <!-- end clothing desc -->
 
  <!-- begin video 1 -->
-<div id="d16f9385-f61b-4ae7-a8f2-1f951840db7a" class="widget widget-video widget-video-video-2" style="display: block !important;"><div data-ux="Widget" role="region" id="d16f9385-f61b-4ae7-a8f2-1f951840db7a" class="x-el x-el-div x-el c1-1 c1-2 c1-9h c1-b c1-c c1-d c1-e c1-f c1-g c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g" style="display: block !important;"><div><section data-ux="Section" style="background-color: #212529 !important; display: block !important; padding: 20px 0;" class="x-el x-el-section c1-1 c1-2 c1-9h c1-i c1-j c1-k c1-l c1-m c1-b c1-c c1-u c1-v c1-d c1-e c1-f c1-g"><div data-ux="Container" class="x-el x-el-div c1-1 c1-2 c1-18 c1-19 c1-1a c1-1b c1-1c c1-b c1-c c1-1g c1-d c1-1h c1-e c1-1i c1-f c1-1j c1-g" style="display: block !important; max-width: 1200px; margin: 0 auto; padding: 0 15px; box-sizing: border-box;"><div data-ux="Block" marginbottom="none" class="x-el x-el-div c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g" style="display: block !important;"><h2 role="heading" aria-level="2" data-ux="SectionHeading" data-aid="VIDEO_SECTION_TITLE_RENDERED" data-typography="HeadingBeta" class="x-el x-el-h2 c1-1k c1-1l c1-1m c1-1n c1-8p c1-4j c1-4k c1-1p c1-x c1-5n c1-b c1-c c1-1v c1-2s c1-8q c1-d c1-e c1-f c1-g"><span data-ux="Element" class=""></span></h2></div>
+<div id="d16f9385-f61b-4ae7-a8f2-1f951840db7a" class="widget widget-video widget-video-video-2" style="display: block !important; width: 100% !important; margin: 0 !important; padding: 0 !important;"><div data-ux="Widget" role="region" id="d16f9385-f61b-4ae7-a8f2-1f951840db7a" class="x-el x-el-div x-el c1-1 c1-2 c1-9h c1-b c1-c c1-d c1-e c1-f c1-g c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g" style="display: block !important; width: 100% !important; margin: 0 !important; padding: 0 !important;"><div><section data-ux="Section" style="background-color: #212529 !important; display: block !important; padding: 40px 0; width: 100% !important; clear: both !important;" class="x-el x-el-section c1-1 c1-2 c1-9h c1-i c1-j c1-k c1-l c1-m c1-b c1-c c1-u c1-v c1-d c1-e c1-f c1-g"><div data-ux="Container" class="x-el x-el-div c1-1 c1-2 c1-18 c1-19 c1-1a c1-1b c1-1c c1-b c1-c c1-1g c1-d c1-1h c1-e c1-1i c1-f c1-1j c1-g" style="display: block !important; max-width: 1200px !important; width: 100% !important; margin: 0 auto !important; padding: 0 20px !important; box-sizing: border-box !important;"><div data-ux="Block" marginbottom="none" class="x-el x-el-div c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g" style="display: block !important;"><h2 role="heading" aria-level="2" data-ux="SectionHeading" data-aid="VIDEO_SECTION_TITLE_RENDERED" data-typography="HeadingBeta" class="x-el x-el-h2 c1-1k c1-1l c1-1m c1-1n c1-8p c1-4j c1-4k c1-1p c1-x c1-5n c1-b c1-c c1-1v c1-2s c1-8q c1-d c1-e c1-f c1-g"><span data-ux="Element" class=""></span></h2></div>
 
 <style>
   .custom-grid-container {
@@ -577,37 +577,38 @@ if ('serviceWorker' in navigator) {
     flex-wrap: nowrap !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    gap: 30px !important;
+    gap: 40px !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   .custom-video-cell {
-    width: 55% !important;
-    max-width: 55% !important;
-    flex: 0 0 55% !important;
+    width: 60% !important;
+    max-width: 60% !important;
+    flex: 0 0 60% !important;
     box-sizing: border-box !important;
+    margin: 0 !important;
   }
   .custom-text-cell {
-    width: 45% !important;
-    max-width: 45% !important;
-    flex: 0 0 45% !important;
+    width: 40% !important;
+    max-width: 40% !important;
+    flex: 0 0 40% !important;
     box-sizing: border-box !important;
+    margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
   }
   @media (max-width: 768px) {
     .custom-grid-container {
       flex-direction: column !important;
-      gap: 15px !important;
+      gap: 20px !important;
     }
-    .custom-video-cell {
+    .custom-video-cell, .custom-text-cell {
       width: 100% !important;
       max-width: 100% !important;
       flex: 0 0 100% !important;
-    }
-    .custom-text-cell {
-      width: 100% !important;
-      max-width: 100% !important;
-      flex: 0 0 100% !important;
-    }
-    .custom-text-cell p {
-      margin-top: 5px !important;
+      left: 0 !important;
+      transform: none !important;
+      margin: 0 !important;
     }
   }
 </style>
@@ -623,12 +624,13 @@ if ('serviceWorker' in navigator) {
     
     <!-- r1c2 Desktop / r2c1 Mobile -->
     <div data-ux="GridCell" class="x-el x-el-div c1-1 c1-2 c1-9i c1-7m c1-9r c1-9s c1-1c c1-3f c1-9t c1-4h c1-9u c1-b c1-c c1-9v c1-9w c1-9x c1-9y c1-9z c1-a0 c1-d c1-e c1-f c1-g custom-text-cell">
-        <div data-ux="TextMajor" data-aid="VIDEO_DESCRIPTION_RENDERED" fontscalemultiplier="0.79" data-typography="BodyBeta" data-font-scaled="true" class="x-el c1-1 c1-2 c1-1m c1-1n c1-1o c1-1p c1-6o c1-1r c1-a7 c1-b c1-a8 c1-1v c1-a9 c1-aa c1-ab c1-ac c1-ad c1-ae x-rt">
+        <div data-ux="TextMajor" data-aid="VIDEO_DESCRIPTION_RENDERED" fontscalemultiplier="0.79" data-typography="BodyBeta" data-font-scaled="true" class="x-el c1-1 c1-2 c1-1m c1-1n c1-1o c1-1p c1-6o c1-1r c1-a7 c1-b c1-a8 c1-1v c1-a9 c1-aa c1-ab c1-ac c1-ad c1-ae x-rt" style="width: 100% !important;">
             <p style="margin: 0; color: #F5F5F5; font-weight: 500; font-size: 16px; line-height: 1.6; text-align: left;"><span>Donation supplies in support of our neonatal and clothing drive initiatives.</span></p>
         </div>
     </div>
 
 </div></div></section></div></div></div>
+
  <!-- end video 1 -->
  
   <!-- begin video 2 -->
