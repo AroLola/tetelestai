@@ -35,6 +35,39 @@
     z-index: 100000 !important;
     background-color: #040430 !important;
   }
+   /* 3. DESKTOP FIX: Prevent inner header containers from clipping long dropdowns */
+  .widget-header,
+  .widget-header *,
+  header,
+  header *,
+  [data-ux="Header"],
+  [data-ux="Header"] *,
+  [data-ux="Navigation"],
+  [data-ux="Navigation"] * {
+    overflow: visible !important;
+  }
+
+  .widget-header,
+  header,
+  [data-ux="Header"] {
+    position: relative !important;
+    z-index: 999999 !important;
+  }
+
+  /* Push EVERY section/widget after the header down so nothing overlaps dropdowns */
+  .widget-header ~ .widget,
+  .widget-header ~ div {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  ul[data-ux="Dropdown"] {
+    position: absolute !important;
+    z-index: 1000000 !important;
+    background-color: #040430 !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  }
+
 
   /* 4. MOBILE FIX: Force dark blue background on the drawer even on the VERY FIRST click */
   @media (max-width: 767px) {
