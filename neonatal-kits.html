@@ -698,21 +698,46 @@ if ('serviceWorker' in navigator) {
 
 <!--begin first video-->
 <style>
-  #400877c0-d3b7-4e9b-abb4-cfcae917277a [data-ux="Grid"] {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 24px !important;
-    align-items: flex-start !important;
+  .widget-video-video-2,
+  .widget-video-video-2 section[data-ux="Section"] {
+    background-color: #222222 !important;
+    padding: 40px 20px !important;
+    color: #ffffff !important;
   }
 
-  #400877c0-d3b7-4e9b-abb4-cfcae917277a [data-ux="GridCell"] {
-    flex: 1 1 calc(50% - 12px) !important;
-    max-width: calc(50% - 12px) !important;
-    width: calc(50% - 12px) !important;
+  .widget-video-video-2 [data-ux="Container"] {
+    max-width: 1140px !important;
+    margin: 0 auto !important;
+  }
+
+  .widget-video-video-2 h2[data-ux="SectionHeading"] {
+    color: #ffffff !important;
+    margin-bottom: 24px !important;
+    text-align: left !important;
+  }
+
+  .widget-video-video-2 [data-ux="Grid"] {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 32px !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .widget-video-video-2 [data-ux="GridCell"] {
+    flex: 1 1 50% !important;
+    max-width: 50% !important;
+    width: 50% !important;
     box-sizing: border-box !important;
   }
 
-  #400877c0-d3b7-4e9b-abb4-cfcae917277a [data-ux="EmbedContainer"] {
+  .widget-video-video-2 [data-ux="Video"],
+  .widget-video-video-2 [data-ux="Block"] {
+    width: 100% !important;
+  }
+
+  .widget-video-video-2 [data-ux="EmbedContainer"] {
     position: relative !important;
     padding-bottom: 56.25% !important;
     height: 0 !important;
@@ -721,7 +746,7 @@ if ('serviceWorker' in navigator) {
     max-width: 100% !important;
   }
 
-  #400877c0-d3b7-4e9b-abb4-cfcae917277a [data-ux="EmbedContainer"] iframe {
+  .widget-video-video-2 [data-ux="EmbedContainer"] iframe {
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
@@ -730,8 +755,29 @@ if ('serviceWorker' in navigator) {
     border: 0 !important;
   }
 
+  .widget-video-video-2 [data-ux="TextMajor"],
+  .widget-video-video-2 [data-ux="TextMajor"] p,
+  .widget-video-video-2 [data-ux="TextMajor"] span {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  .widget-video-video-2 [data-ux="TextMajor"] a {
+    color: #66b2ff !important;
+    text-decoration: underline !important;
+    font-weight: 600 !important;
+  }
+
   @media (max-width: 768px) {
-    #400877c0-d3b7-4e9b-abb4-cfcae917277a [data-ux="GridCell"] {
+    .widget-video-video-2 [data-ux="Grid"] {
+      flex-direction: column !important;
+      flex-wrap: wrap !important;
+      gap: 20px !important;
+    }
+
+    .widget-video-video-2 [data-ux="GridCell"] {
       flex: 1 1 100% !important;
       max-width: 100% !important;
       width: 100% !important;
@@ -739,7 +785,38 @@ if ('serviceWorker' in navigator) {
   }
 </style>
 
-<div id="400877c0-d3b7-4e9b-abb4-cfcae917277a" class="widget widget-video widget-video-video-2"><div data-ux="Widget" role="region" id="400877c0-d3b7-4e9b-abb4-cfcae917277a" class="x-el x-el-div x-el c1-1 c1-2 c1-dp c1-b c1-c c1-d c1-e c1-f c1-g c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><div> <section data-ux="Section" class="x-el x-el-section c1-1 c1-2 c1-dp c1-i c1-j c1-k c1-l c1-m c1-b c1-c c1-u c1-v c1-d c1-e c1-f c1-g"><div data-ux="Container" class="x-el x-el-div c1-1 c1-2 c1-18 c1-19 c1-1a c1-1b c1-1c c1-b c1-c c1-1g c1-d c1-1h c1-e c1-1i c1-f c1-1j c1-g"><div data-ux="Block" marginbottom="none" class="x-el x-el-div c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><h2 role="heading" aria-level="2" data-ux="SectionHeading" data-aid="VIDEO_SECTION_TITLE_RENDERED" data-typography="HeadingBeta" class="x-el x-el-h2 c1-1k c1-1l c1-1m c1-1n c1-8u c1-4i c1-4j c1-1p c1-8v c1-5n c1-b c1-c c1-1u c1-2r c1-8w c1-d c1-e c1-f c1-g"><span data-ux="Element" class="">Video</span></h2></div><div data-ux="Grid" class="x-el x-el-div c1-1 c1-2 c1-1d c1-93 c1-94 c1-2e c1-1p c1-95 c1-96 c1-97 c1-1e c1-b c1-c c1-98 c1-99 c1-9a c1-9b c1-d c1-e c1-f c1-g"><div data-ux="GridCell" class="x-el x-el-div c1-1 c1-2 c1-93 c1-9c c1-9d c1-9e c1-1c c1-3e c1-9f c1-4g c1-9g c1-b c1-c c1-dq c1-dr c1-9h c1-9i c1-9j c1-9k c1-d c1-e c1-f c1-g"><div data-ux="Video" class="x-el x-el-div x-el c1-1 c1-2 c1-4 c1-b c1-c c1-ds c1-dt c1-d c1-e c1-f c1-g c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><div data-ux="Block" class="x-el x-el-div c1-1 c1-2 c1-1d c1-68 c1-du c1-b c1-c c1-d c1-e c1-f c1-g"><div data-ux="EmbedContainer" class="x-el x-el-div c1-1 c1-2 c1-w c1-dv c1-68 c1-1c c1-dw c1-3h c1-3f c1-4 c1-b c1-c c1-d c1-e c1-f c1-g"><iframe src="https://www.youtube.com/embed/i9rDQ3ixLhE?si=sPh27jU6-tnYFptZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div></div></div><div data-ux="GridCell" class="x-el x-el-div c1-1 c1-2 c1-93 c1-9c c1-9d c1-9e c1-1c c1-3e c1-9f c1-4g c1-9g c1-b c1-c c1-dq c1-dr c1-9h c1-9i c1-9j c1-9k c1-d c1-e c1-f c1-g"><div data-ux="TextMajor" data-aid="VIDEO_DESCRIPTION_RENDERED" fontscalemultiplier="0.88" data-typography="BodyBeta" data-font-scaled="true" class="x-el c1-1 c1-2 c1-1m c1-1n c1-1o c1-1p c1-6o c1-1q c1-7e c1-b c1-ae c1-1u c1-e1 c1-e2 c1-ah c1-ai c1-aj c1-ak x-rt"><p style="margin:0"><span>Our November 2026 report on maternal health identifies the need to develop solutions for perinatal women struggling to cope with behavioral-risk factors that affect their well-being during this phase. Several of the studies referenced concur that poverty increases for low income patients during the perinatal period, particularly as nutrition and medical costs accumulate during this stage. Our #neonatalkits provide tangible solutions to some of the issues identified in our maternal health report. The enclosed video shows snippets from our most recent hospital donations. </span></p><p style="margin:0"><span><br></span></p><p style="margin:0"><span>Click <a class="x-el x-el-a c1-2i c1-2j c1-ap c1-1m c1-1n c1-38 c1-17 c1-8x c1-b c1-2r c1-2s c1-2t c1-2u" href="https://tetelestai.services/reports" rel="noopener" target="_blank">here</a> to access the full report.&nbsp;</span></p><p style="margin:0"><span><br></span></p></div></div></div></div></section>  </div></div></div><div id="548a50a3-cb5d-48b4-b7b1-3ab917ce9678" class="widget widget-gallery widget-gallery-gallery-3"><div data-ux="Widget" role="region" id="548a50a3-cb5d-48b4-b7b1-3ab917ce9678" class="x-el x-el-div x-el c1-1 c1-2 c1-e3 c1-b c1-c c1-d c1-e c1-f c1-g c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><div> <section data-ux="Section" class="x-el x-el-section c1-1 c1-2 c1-e3 c1-i c1-j c1-k c1-l c1-m c1-b c1-c c1-u c1-v c1-d c1-e c1-f c1-g"><div data-ux="Container" class="x-el x-el-div c1-1 c1-2 c1-18 c1-19 c1-1a c1-1b c1-1c c1-b c1-c c1-1g c1-d c1-1h c1-e c1-1i c1-f c1-1j c1-g"><h2 role="heading" aria-level="2" data-ux="SectionHeading" data-aid="GALLERY_SECTION_TITLE_RENDERED" data-typography="HeadingBeta" class="x-el x-el-h2 c1-1k c1-1l c1-1m c1-1n c1-8u c1-4i c1-4j c1-1p c1-8v c1-5n c1-b c1-c c1-1u c1-e4 c1-e5 c1-8w c1-d c1-e c1-f c1-g"><span data-ux="Element" class=""></span></h2></div><div data-ux="Element" id="bs-17" class="x-el x-el-div c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><span data-ux="Element" class="x-el x-el-span c2-1 c2-2 c2-3 c2-4 c2-5 c2-6 c2-7 c2-8"><div></div></span></div></section>  </div></div></div>
+<div id="400877c0-d3b7-4e9b-abb4-cfcae917277a" class="widget widget-video widget-video-video-2">
+  <div data-ux="Widget" role="region" class="x-el x-el-div">
+    <div>
+      <section data-ux="Section" class="x-el x-el-section">
+        <div data-ux="Container" class="x-el x-el-div">
+          <div data-ux="Block" class="x-el x-el-div">
+            <h2 role="heading" aria-level="2" data-ux="SectionHeading" data-aid="VIDEO_SECTION_TITLE_RENDERED">
+              <span>Video</span>
+            </h2>
+          </div>
+          <div data-ux="Grid" class="x-el x-el-div">
+            <div data-ux="GridCell" class="x-el x-el-div">
+              <div data-ux="Video" class="x-el x-el-div">
+                <div data-ux="Block" class="x-el x-el-div">
+                  <div data-ux="EmbedContainer" class="x-el x-el-div">
+                    <iframe src="https://youtube.com" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-ux="GridCell" class="x-el x-el-div">
+              <div data-ux="TextMajor" data-aid="VIDEO_DESCRIPTION_RENDERED">
+                <p style="margin:0 0 16px 0;">Our November 2026 report on maternal health identifies the need to develop solutions for perinatal women struggling to cope with behavioral-risk factors that affect their well-being during this phase. Several of the studies referenced concur that poverty increases for low income patients during the perinatal period, particularly as nutrition and medical costs accumulate during this stage. Our #neonatalkits provide tangible solutions to some of the issues identified in our maternal health report. The enclosed video shows snippets from our most recent hospital donations.</p>
+                <p style="margin:0;">Click <a href="https://tetelestai.services" rel="noopener" target="_blank">here</a> to access the full report.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
 <!-- end first video -->
 
  
