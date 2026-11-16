@@ -1,8 +1,24 @@
  <!DOCTYPE html>
-<!-- saved from url=(0028)https://tetelestai.services/ -->
 <html lang="en-IN"><head>
-  <!-- SYSTEM NAVIGATION RECOVERY - FULLY EXPANDED SCROLLABLE MOBILE DRAWER -->
+  <!-- CRITICAL ANTI-FOUC & SYSTEM NAVIGATION RECOVERY -->
 <style>
+  /* 1. Immediately strip underlines and bullets globally before GoDaddy styles load */
+  a, a:visited, a:hover, a:active {
+    text-decoration: none !important;
+  }
+  ul, li {
+    list-style: none !important;
+  }
+
+  /* 2. Briefly hide unstyled body during the first 150ms of CSS parsing */
+  body {
+    opacity: 0;
+    animation: tetelestaiFadeIn 0.15s ease-out 0.15s forwards;
+  }
+  @keyframes tetelestaiFadeIn {
+    to { opacity: 1; }
+  }
+
   @media (max-width: 767px) {
     /* FORCES THE HAMBURGER BUTTON SVG LINES TO REMAIN CRISP WHITE ON ALL TABS */
     a[data-aid="HAMBURGER_MENU_LINK"],
@@ -26,13 +42,10 @@
       left: 0 !important;
       width: 100vw !important;
       height: 100vh !important;
-      background-color: #040430 !important; /* Elegant corporate deep blue organizational theme */
+      background-color: #040430 !important;
       z-index: 999999 !important;
-      
-      /* THE SPACING FIX: Enables absolute vertical swiping so no links are trapped off-screen */
       overflow-y: scroll !important; 
-      -webkit-overflow-scrolling: touch !important; /* Forces buttery-smooth finger scrolling on iOS devices */
-      
+      -webkit-overflow-scrolling: touch !important;
       padding: 80px 20px 60px 20px !important;
       box-sizing: border-box !important;
     }
@@ -78,7 +91,7 @@
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul a,
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"] a {
       font-size: 16px !important;
-      color: #d1d1d6 !important; /* Soft gray secondary contrast tone accent */
+      color: #d1d1d6 !important;
     }
   }
 </style>
