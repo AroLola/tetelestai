@@ -3,8 +3,41 @@
 <html lang="en-IN"><head>
 <!-- SYSTEM NAVIGATION RECOVERY - FULLY EXPANDED SCROLLABLE MOBILE DRAWER -->
 <style>
+  /* 1. Immediately strip underlines and bullets globally before GoDaddy styles load */
+  a, a:visited, a:hover, a:active {
+    text-decoration: none !important;
+  }
+  ul, li {
+    list-style: none !important;
+  }
+
+  /* 2. Briefly hide unstyled body during the first 150ms of CSS parsing */
+  body {
+    opacity: 0;
+    animation: tetelestaiFadeIn 0.15s ease-out 0.15s forwards;
+  }
+  @keyframes tetelestaiFadeIn {
+    to { opacity: 1; }
+  }
+
+  /* 3. DESKTOP FIX: Force header and dropdown menus to stay above the Welcome section */
+  header,
+  [data-ux="Header"],
+  [data-ux="Navigation"],
+  [role="banner"] {
+    position: relative !important;
+    z-index: 99999 !important;
+    overflow: visible !important;
+  }
+  [data-ux="Dropdown"],
+  [role="menu"],
+  nav ul ul {
+    z-index: 100000 !important;
+    background-color: #040430 !important;
+  }
+
+  /* 4. MOBILE FIX: Force dark blue background on the drawer even on the VERY FIRST click */
   @media (max-width: 767px) {
-    /* FORCES THE HAMBURGER BUTTON SVG LINES TO REMAIN CRISP WHITE ON ALL TABS */
     a[data-aid="HAMBURGER_MENU_LINK"],
     a[data-aid="HAMBURGER_MENU_LINK"] svg,
     a[data-aid="HAMBURGER_MENU_LINK"] path,
@@ -15,7 +48,14 @@
       opacity: 1 !important;
     }
 
-    /* 1. Force both possible mobile container panel ids to display fully open and vertically scrollable */
+    /* Targets the drawer immediately on first open, before JS adds .tetelestai-open-drawer */
+    div[data-ux="NavigationDrawer"],
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"],
+    div[data-ux="NavigationDrawer"][id*="-navId-mobile"].tetelestai-open-drawer {
+      background-color: #040430 !important;
+      color: #ffffff !important;
+    }
+
     div[data-ux="NavigationDrawer"][id*="-navId-mobile"].tetelestai-open-drawer {
       display: block !important;
       visibility: visible !important;
@@ -26,20 +66,15 @@
       left: 0 !important;
       width: 100vw !important;
       height: 100vh !important;
-      background-color: #040430 !important; /* Elegant corporate deep blue organizational theme */
       z-index: 999999 !important;
-      
-      /* THE SPACING FIX: Enables absolute vertical swiping so no links are trapped off-screen */
       overflow-y: scroll !important; 
-      -webkit-overflow-scrolling: touch !important; /* Forces buttery-smooth finger scrolling on iOS devices */
-      
+      -webkit-overflow-scrolling: touch !important;
       padding: 80px 20px 60px 20px !important;
       box-sizing: border-box !important;
     }
 
-    /* 2. Format parent and child list structures to stack vertically down the sidebar */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] li {
+    div[data-ux="NavigationDrawer"] ul,
+    div[data-ux="NavigationDrawer"] li {
       display: block !important;
       width: 100% !important;
       height: auto !important;
@@ -49,12 +84,12 @@
       margin: 0 !important;
       padding: 8px 0 !important;
       float: none !important;
+      background-color: transparent !important;
     }
 
-    /* 3. Force all nested overflow lists (Initiatives, Publications, Contact) to display fully unrolled inline */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [data-ux="NavigationDrawerList"] [role="menu"],
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [class*="Dropdown"] {
+    div[data-ux="NavigationDrawer"] ul ul,
+    div[data-ux="NavigationDrawer"] [data-ux="NavigationDrawerList"] [role="menu"],
+    div[data-ux="NavigationDrawer"] [class*="Dropdown"] {
       display: block !important; 
       visibility: visible !important;
       opacity: 1 !important;
@@ -65,20 +100,18 @@
       height: auto !important;
     }
 
-    /* 4. Fix typography styling parameters for crisp smartphone readability */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] a,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] span {
+    div[data-ux="NavigationDrawer"] a,
+    div[data-ux="NavigationDrawer"] span {
       color: #ffffff !important;
       font-size: 19px !important;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
       text-decoration: none !important;
     }
 
-    /* Style sub-navigation target links slightly smaller to indicate path hierarchy levels */
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] ul ul a,
-    div[data-ux="NavigationDrawer"][id*="-navId-mobile"] [role="menu"] a {
+    div[data-ux="NavigationDrawer"] ul ul a,
+    div[data-ux="NavigationDrawer"] [role="menu"] a {
       font-size: 16px !important;
-      color: #d1d1d6 !important; /* Soft gray secondary contrast tone accent */
+      color: #d1d1d6 !important;
     }
   }
 </style>
