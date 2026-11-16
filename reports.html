@@ -402,40 +402,44 @@ if ('serviceWorker' in navigator) {
  
 <div id="1d64b490-2353-43dd-8f98-0f7bbce707c5" class="widget widget-gallery widget-gallery-gallery-3"><div data-ux="WidgetBanner" role="region" id="1d64b490-2353-43dd-8f98-0f7bbce707c5" class="x-el x-el-div x-el c1-1 c1-2 c1-a5 c1-b c1-c c1-d c1-e c1-f c1-g c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><div> <section data-ux="SectionBanner" class="x-el x-el-section c1-1 c1-2 c1-3n c1-i c1-j c1-k c1-l c1-a6 c1-b c1-c c1-u c1-a7 c1-d c1-e c1-f c1-g"><div data-ux="Container" class="x-el x-el-div c1-1 c1-2 c1-18 c1-19 c1-1a c1-1b c1-1c c1-b c1-c c1-1g c1-d parag-1h c1-e c1-1i c1-f c1-1j c1-g"><h2 role="heading" aria-level="2" data-ux="SectionHeading" data-aid="GALLERY_SECTION_TITLE_RENDERED" data-typography="HeadingBeta" class="x-el x-el-h2 c1-1k c1-1l c1-1m c1-1n c1-a8 c1-4i c1-4j c1-1p c1-a9 c1-5n c1-b c1-c c1-1u c1-2r c1-aa c1-d c1-e c1-f c1-g"><span data-ux="Element" class=""> </span></h2></div><div data-ux="Element" id="bs-11" class="x-el x-el-div c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><span data-ux="Element" class="x-el x-el-span c2-1 c2-2 c2-3 c2-4 c2-5 c2-6 c2-7 c2-8"><div></div></span></div></section>  </div></div></div><div id="583a5509-70db-41c2-a57d-4d7d2b887ca5" class="widget widget-about widget-about-about-9"><div data-ux="Widget" role="region" id="583a5509-70db-41c2-a57d-4d7d2b887ca5" class="x-el x-el-div x-el c1-1 c1-2 c1-af c1-b c1-c c1-d c1-e c1-f c1-g c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><div> <section data-ux="Section" class="x-el x-el-section c1-1 c1-2 c1-af c1-i c1-j c1-k c1-l c1-m c1-b c1-c c1-u c1-v c1-d c1-e c1-f c1-g"><div data-ux="Container" class="x-el x-el-div c1-1 c1-2 c1-18 c1-19 c1-1a c1-1b c1-1c c1-b c1-c c1-1g c1-d c1-1h c1-e c1-1i c1-f c1-1j c1-g"><h2 role="heading" aria-level="2" data-ux="SectionHeading" data-aid="ABOUT_SECTION_TITLE_RENDERED" data-typography="HeadingBeta" class="x-el x-el-h2 c1-1k c1-1l c1-1m c1-1n c1-a8 c1-4i c1-4j c1-1p c1-a9 c1-5n c1-b c1-c c1-1u c1-2r c1-aa c1-d c1-e c1-f c1-g"><span data-ux="Element" class="">UPCOMING REPORT </span></h2>
 
-<!-- INJECTED STABILIZER: Prevents GoDaddy from hiding our photo block without breaking grid column widths -->
+<!-- INJECTED STABILIZER: Strips GoDaddy image sizing locks and prevents overflow -->
 <style>
+  #583a5509-70db-41c2-a57d-4d7d2b887ca5 section,
+  #583a5509-70db-41c2-a57d-4d7d2b887ca5 [data-ux="Grid"] {
+    overflow: hidden !important;
+    height: auto !important;
+  }
   .tetelestai-maternal-photo-box {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     opacity: 1 !important;
     visibility: visible !important;
-  }
-  .tetelestai-maternal-photo-box img {
-    width: 80% !important;
-    max-width: 80% !important;
-    max-height: 450px !important;
-    object-fit: contain !important;
+    position: relative !important;
     height: auto !important;
+  }
+  .tetelestai-custom-img {
+    position: static !important;
+    width: 80% !important;
+    max-width: 320px !important;
+    max-height: 360px !important;
+    height: auto !important;
+    object-fit: contain !important;
     display: block !important;
     margin: 0 auto !important;
-    border-radius: 6px;
-  }
-  @media (max-width: 767px) {
-    .tetelestai-maternal-photo-box img {
-      margin: 15px auto !important;
-      max-height: 380px !important;
-    }
+    border-radius: 6px !important;
   }
 </style>
+
 <div data-ux="Grid" class="x-el x-el-div c1-1 c1-2 c1-1d c1-7e c1-7f c1-2e c1-1p c1-7g c1-ag c1-7h c1-b c1-c c1-7i c1-7j c1-ah c1-7k c1-d c1-e c1-f c1-g">
   
   <!-- COLUMN 1: THE RE-STABILIZED IMAGE CELL -->
   <div data-ux="GridCell" class="x-el x-el-div c1-1 c1-2 c1-7e c1-7l c1-7m c1-ai c1-1c c1-3e c1-7o c1-3g c1-7p c1-al c1-1f c1-b c1-c c1-am c1-an c1-7t c1-7u c1-7v c1-7w c1-d c1-e c1-f c1-g tetelestai-maternal-photo-box">
-    <div data-ux="Block" class="x-el x-el-div c1-1 c1-2 c1-a9 c1-1r c1-b c1-c c1-d c1-ao c1-e c1-f c1-g" style="width: 100%;">
-      <img src="./images/comingsoonhousing.jpg" alt="Upcoming Report Cover" class="x-el x-el-img">
+    <div data-ux="Block" class="x-el x-el-div c1-1 c1-2 c1-a9 c1-1r c1-b c1-c c1-d c1-ao c1-e c1-f c1-g" style="width: 100%; position: relative !important; height: auto !important;">
+      <img src="./images/comingsoonhousing.jpg" alt="Upcoming Report Cover" class="tetelestai-custom-img">
     </div>
   </div>
+
 
   
   <!-- COLUMN 2: THE ACCOMPANYING DESCRIPTION BLOCK -->
