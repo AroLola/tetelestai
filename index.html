@@ -609,113 +609,6 @@ if ('serviceWorker' in navigator) {
   }
 </style>
 
- <!--new 111726-->
-
- <style>
-  /* Self-contained Header & Desktop Nav Styling + Welcome Banner Layering Fix */
-  @media (min-width: 768px) {
-    /* Elevate the desktop header above the Welcome banner */
-    [data-aid="HEADER_SECTION"] {
-      position: relative !important;
-      z-index: 999999 !important;
-      overflow: visible !important;
-    }
-
-    /* Hide mobile hamburger, mobile drawer, and GoDaddy's duplicate "More" overflow item */
-    [data-aid="HAMBURGER_MENU_LINK"],
-    div[data-ux="NavigationDrawer"],
-    li.nav-item:last-child:has(a[data-aid="NAV_MORE"]),
-    [data-aid="NAV_MORE"] {
-      display: none !important;
-    }
-
-    /* Align the top navigation bar cleanly */
-    [data-aid="HEADER_SECTION"] nav[data-ux="Block"],
-    [data-aid="HEADER_SECTION"] nav[data-ux="Block"] > div {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      width: 100% !important;
-    }
-
-    /* Make ONLY the top-level menu bar horizontal (not nested dropdowns) */
-    [data-aid="HEADER_SECTION"] ul[data-ux="Nav"],
-    [data-aid="HEADER_SECTION"] nav > div > div > ul {
-      display: flex !important;
-      flex-direction: row !important;
-      flex-wrap: nowrap !important;
-      align-items: center !important;
-      gap: 24px !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      list-style: none !important;
-    }
-
-    /* Force all top-level nav items to stay visible */
-    [data-aid="HEADER_SECTION"] li.nav-item {
-      display: inline-block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      position: relative !important;
-    }
-
-    [data-aid="HEADER_SECTION"] li.nav-item > div > span > a,
-    [data-aid="HEADER_SECTION"] a[data-ux="NavLink"],
-    [data-aid="HEADER_SECTION"] a[data-ux="NavLinkActive"],
-    [data-aid="HEADER_SECTION"] a[data-ux="NavLinkDropdown"] {
-      color: #ffffff !important;
-      font-family: Lato, Arial, sans-serif !important;
-      font-size: 14px !important;
-      letter-spacing: 0.214em !important;
-      text-transform: uppercase !important;
-      text-decoration: none !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      white-space: nowrap !important;
-    }
-
-    /* Keep dropdown menus hidden until clicked and stack their items vertically */
-    [data-aid="HEADER_SECTION"] ul[data-ux="Dropdown"],
-    [data-aid="HEADER_SECTION"] li.nav-item ul {
-      display: none;
-      flex-direction: column !important;
-      position: absolute !important;
-      top: 100% !important;
-      left: 0 !important;
-      min-width: 210px !important;
-      background-color: #040430 !important;
-      padding: 12px 16px !important;
-      margin-top: 8px !important;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
-      z-index: 1000000 !important;
-      list-style: none !important;
-    }
-
-    [data-aid="HEADER_SECTION"] ul[data-ux="Dropdown"] li,
-    [data-aid="HEADER_SECTION"] li.nav-item ul li {
-      display: block !important;
-      width: 100% !important;
-      padding: 8px 0 !important;
-      margin: 0 !important;
-    }
-
-    [data-aid="HEADER_SECTION"] ul[data-ux="Dropdown"] a,
-    [data-aid="HEADER_SECTION"] li.nav-item ul a {
-      color: #e8e8e9 !important;
-      font-size: 14px !important;
-      text-transform: none !important;
-      letter-spacing: normal !important;
-      text-decoration: none !important;
-      white-space: nowrap !important;
-      display: block !important;
-    }
-
-    [data-aid="HEADER_SECTION"] ul[data-ux="Dropdown"] a:hover,
-    [data-aid="HEADER_SECTION"] li.nav-item ul a:hover {
-      color: #ffffff !important;
-    }
-  }
-</style>
 
 </head>
 <body class="x  x-fonts-cinzel x-fonts-lato x-fonts-raleway"><div id="layout-7-e-12805-e-e-110-4849-acdf-189-fcbc-8-cd-0-f" class="layout layout-layout layout-layout-layout-27 locale-en-IN lang-en"><div data-ux="Page" id="page-146341" class="x-el x-el-div x-el c1-1 c1-2 c1-3 c1-4 c1-5 c1-6 c1-7 c1-8 c1-9 c1-a c1-b c1-c c1-d c1-e c1-f c1-g c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><div data-ux="Block" class="x-el x-el-div page-inner c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><div id="ea55f112-b53c-458f-9f07-fecca956ed54" class="widget widget-header widget-header-header-9"><div data-ux="Header" role="main" data-aid="HEADER_WIDGET" id="n-146342" class="x-el x-el-div x-el x-el c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g c1-1 c1-2 c1-h c1-b c1-c c1-d c1-e c1-f c1-g c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><div> <div id="freemium-ad-146344"></div>
@@ -807,21 +700,30 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
 
             // Open this dropdown if it was closed
             if (!isCurrentlyOpen) {
-              // Walk up parent wrappers from dropdown to <body> so nothing clips or buries it
-              var el = dropdownMenu.parentElement;
-              while (el && el !== document.body) {
-                el.style.setProperty('overflow', 'visible', 'important');
-                if (el.classList.contains('widget') || el.tagName === 'HEADER' || el.getAttribute('data-ux') === 'Header') {
-                  el.style.setProperty('position', 'relative', 'important');
-                  el.style.setProperty('z-index', '999999', 'important');
-                }
-                el = el.parentElement;
+              // Elevate only the <nav> bar and parent <li> without altering the Welcome banner layout
+              var navBar = cleanTrigger.closest('nav');
+              if (navBar) {
+                navBar.style.setProperty('position', 'relative', 'important');
+                navBar.style.setProperty('z-index', '999999', 'important');
+                navBar.style.setProperty('overflow', 'visible', 'important');
+              }
+              if (parentLi) {
+                parentLi.style.setProperty('position', 'relative', 'important');
+                parentLi.style.setProperty('z-index', '999999', 'important');
+                parentLi.style.setProperty('overflow', 'visible', 'important');
               }
 
+              // Force all 4 submenu items to display at full height above the Welcome banner
               dropdownMenu.style.setProperty('display', 'block', 'important');
               dropdownMenu.style.setProperty('visibility', 'visible', 'important');
               dropdownMenu.style.setProperty('opacity', '1', 'important');
               dropdownMenu.style.setProperty('position', 'absolute', 'important');
+              dropdownMenu.style.setProperty('top', '100%', 'important');
+              dropdownMenu.style.setProperty('left', '0', 'important');
+              dropdownMenu.style.setProperty('height', 'auto', 'important');
+              dropdownMenu.style.setProperty('max-height', 'none', 'important');
+              dropdownMenu.style.setProperty('overflow', 'visible', 'important');
+              dropdownMenu.style.setProperty('background-color', '#040430', 'important');
               dropdownMenu.style.setProperty('z-index', '1000000', 'important');
               cleanTrigger.setAttribute('aria-expanded', 'true');
             } else {
@@ -851,5 +753,6 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
     document.addEventListener('DOMContentLoaded', wireDesktopDropdowns);
   })();
 </script>
+
 
 </body></html>
