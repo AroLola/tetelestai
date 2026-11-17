@@ -900,4 +900,73 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
     document.addEventListener('DOMContentLoaded', wireAdaptiveMobileMenu);
   })();
 </script>
+
+ <!-- TETELESTAI DESKTOP DROPDOWN ACCESSIBILITY BRIDGE -->
+<script type="text/javascript">
+  (function() {
+    function wireDesktopDropdowns() {
+      var desktopTriggers = document.querySelectorAll('a[data-ux="NavLinkDropdown"]');
+
+      desktopTriggers.forEach(function(trigger) {
+        var cleanTrigger = trigger.cloneNode(true);
+        trigger.parentNode.replaceChild(cleanTrigger, trigger);
+
+        cleanTrigger.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          var parentLi = cleanTrigger.closest('li[data-ux="ListItemInline"]');
+          var dropdownMenu = parentLi ? parentLi.querySelector('ul[data-ux="Dropdown"]') : null;
+
+          if (dropdownMenu) {
+            var isCurrentlyOpen = dropdownMenu.style.display === 'block';
+
+            // Close all other desktop dropdowns first
+            document.querySelectorAll('ul[data-ux="Dropdown"]').forEach(function(otherMenu) {
+              otherMenu.style.display = 'none';
+              otherMenu.style.visibility = 'hidden';
+              otherMenu.style.opacity = '0';
+            });
+
+            // Open this dropdown if it was closed
+            if (!isCurrentlyOpen) {
+              // Elevate header widget only when a dropdown is actively opened
+              var headerWidget = cleanTrigger.closest('.widget');
+              if (headerWidget) {
+                headerWidget.style.position = 'relative';
+                headerWidget.style.zIndex = '999999';
+              }
+
+              dropdownMenu.style.display = 'block';
+              dropdownMenu.style.visibility = 'visible';
+              dropdownMenu.style.opacity = '1';
+              dropdownMenu.style.zIndex = '1000000';
+              cleanTrigger.setAttribute('aria-expanded', 'true');
+            } else {
+              cleanTrigger.setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+      });
+
+      // Close desktop dropdowns when clicking anywhere outside
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('li[data-ux="ListItemInline"]')) {
+          document.querySelectorAll('ul[data-ux="Dropdown"]').forEach(function(menu) {
+            menu.style.display = 'none';
+            menu.style.visibility = 'hidden';
+            menu.style.opacity = '0';
+          });
+        }
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      wireDesktopDropdowns();
+    } else {
+      window.addEventListener('load', wireDesktopDropdowns);
+    }
+    document.addEventListener('DOMContentLoaded', wireDesktopDropdowns);
+  })();
+</script>
 </body></html>
