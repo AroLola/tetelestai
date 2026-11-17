@@ -519,11 +519,11 @@ if ('serviceWorker' in navigator) {
     margin-top: 30px !important;
   }
     /* Mobile-only fix: Targets screens narrower than 768 pixels */
-  @media (max-width: 767px) {
+    @media (max-width: 767px) {
     /* Instantly hide the stack of empty line break spaces */
     .tetelestai-final-map-container + p,
     .tetelestai-final-map-container + p + p,
-    p style*="margin:0" > span > br,
+    p[style*="margin:0"] > span > br,
     p:has(br) {
       display: none !important;
       height: 0px !important;
@@ -539,6 +539,17 @@ if ('serviceWorker' in navigator) {
     *[data-aid="CONTACT_INFO_ADDRESS_REND"] {
       margin-top: 5px !important;
       margin-bottom: 15px !important;
+    }
+
+    /* Prevent GoDaddy or Google Maps from freezing mobile touch/scroll on Contact page */
+    html, body {
+      overflow-y: auto !important;
+      position: static !important;
+      touch-action: auto !important;
+    }
+    body.disable-scroll {
+      overflow: auto !important;
+      position: static !important;
     }
   }
 
