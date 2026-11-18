@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-IN"><head>
   <!-- CRITICAL ANTI-FOUC & SYSTEM NAVIGATION RECOVERY -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -641,6 +641,16 @@ if ('serviceWorker' in navigator) {
       max-width: 1160px !important;
       margin: 0 auto !important;
     }
+    /* Section Title Styling */
+    #ti-photo-carousel .ti-section-title {
+      text-align: center !important;
+      margin: 0 0 24px 0 !important;
+      padding: 0 !important;
+      font-size: 32px !important;
+      line-height: 1.25 !important;
+      letter-spacing: 0.04em !important;
+      text-transform: uppercase !important;
+    }
     #ti-photo-carousel .ti-carousel-wrapper {
       position: relative !important;
       width: 100% !important;
@@ -747,6 +757,10 @@ if ('serviceWorker' in navigator) {
       #ti-photo-carousel {
         padding: 24px 16px !important;
       }
+      #ti-photo-carousel .ti-section-title {
+        font-size: 24px !important;
+        margin-bottom: 18px !important;
+      }
       #ti-photo-carousel .ti-slide img {
         height: 300px !important;
       }
@@ -763,6 +777,9 @@ if ('serviceWorker' in navigator) {
   </style>
 
   <div class="ti-carousel-container">
+    <!-- Section Title -->
+    <h2 role="heading" aria-level="2" data-ux="SectionHeading" data-typography="HeadingBeta" class="x-el x-el-h2 c1-1k c1-1l c1-1m c1-1n c1-80 c1-b c1-c c1-1v c1-1w c1-1x c1-d c1-e c1-f c1-g ti-section-title">Tetelestai International in Action</h2>
+
     <div class="ti-carousel-wrapper">
       <div class="ti-carousel-track" id="tiCarouselTrack">
         <!-- Slide 1 -->
@@ -771,11 +788,11 @@ if ('serviceWorker' in navigator) {
         </div>
         <!-- Slide 2 -->
         <div class="ti-slide">
-          <img src="./images/supplies1a.jpg" alt="Community outreach 2">
+          <img src="./images/supplies4.jpg" alt="Community outreach 2">
         </div>
         <!-- Slide 3 -->
         <div class="ti-slide">
-          <img src="./images/supplies4.jpg" alt="Community outreach 3">
+          <img src="./images/supplies5.jpg" alt="Community outreach 3">
         </div>
       </div>
 
