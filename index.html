@@ -782,99 +782,26 @@ if ('serviceWorker' in navigator) {
 
     <div class="ti-carousel-wrapper">
       <div class="ti-carousel-track" id="tiCarouselTrack">
-        <!-- Slide 1 -->
-        <div class="ti-slide">
-          <img src="./images/2a.jpg" alt="Community outreach 1">
-        </div>
-        <!-- Slide 2 -->
-        <div class="ti-slide">
-          <img src="./images/supplies4.jpg" alt="Community outreach 2">
-        </div>
-        <!-- Slide 3 -->
-        <div class="ti-slide">
-          <img src="./images/supplies5.jpg" alt="Community outreach 3">
-        </div>
+        <div class="ti-slide"><img src="./images/2a.jpg" alt="Community outreach 1"></div>
+        <div class="ti-slide"><img src="./images/supplies4.jpg" alt="Community outreach 2"></div>
+        <div class="ti-slide"><img src="./images/supplies5.jpg" alt="Community outreach 3"></div>
+        <div class="ti-slide"><img src="./images/supplies6.jpg" alt="Community outreach 4"></div>
+        <div class="ti-slide"><img src="./images/supplies7.jpg" alt="Community outreach 5"></div>
+        <div class="ti-slide"><img src="./images/supplies8.jpg" alt="Community outreach 6"></div>
+        <div class="ti-slide"><img src="./images/supplies9.jpg" alt="Community outreach 7"></div>
+        <div class="ti-slide"><img src="./images/supplies1a.jpg" alt="Community outreach 8"></div>
+        <div class="ti-slide"><img src="./images/supplies10.jpg" alt="Community outreach 9"></div>
+        <div class="ti-slide"><img src="./images/supplies11.jpg" alt="Community outreach 10"></div>
+        <div class="ti-slide"><img src="./images/supplies12.jpg" alt="Community outreach 11"></div>
+        <div class="ti-slide"><img src="./images/supplies13.jpg" alt="Community outreach 12"></div>
+        <div class="ti-slide"><img src="./images/supplies3a.jpg" alt="Community outreach 13"></div>
+        <div class="ti-slide"><img src="./images/supplies14.jpg" alt="Community outreach 14"></div>
+        <div class="ti-slide"><img src="./images/supplies15.jpg" alt="Community outreach 15"></div>
+        <div class="ti-slide"><img src="./images/supplies16.jpg" alt="Community outreach 16"></div>
+        <div class="ti-slide"><img src="./images/supplies17.jpg" alt="Community outreach 17"></div>
+        <div class="ti-slide"><img src="./images/supplies18.jpg" alt="Community outreach 18"></div>
       </div>
-       <!-- Slide 3a-->
-        <div class="ti-slide">
-          <img src="./images/supplies6.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-      <!-- Slide 4 -->
-        <div class="ti-slide">
-          <img src="./images/supplies7.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-       <!-- Slide 5 -->
-        <div class="ti-slide">
-          <img src="./images/supplies8.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-     <!-- Slide 6 -->
-        <div class="ti-slide">
-          <img src="./images/supplies9.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-    <!-- Slide 7 -->
-        <div class="ti-slide">
-          <img src="./images/supplies1a.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-   <!-- Slide 8-->
-        <div class="ti-slide">
-          <img src="./images/supplies10.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-   <!-- Slide 9-->
-        <div class="ti-slide">
-          <img src="./images/supplies11.jpg" alt="Community outreach 3">
-        </div>
-      </div>
- <!-- Slide 10-->
-        <div class="ti-slide">
-          <img src="./images/supplies12.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-   <!-- Slide 11-->
-        <div class="ti-slide">
-          <img src="./images/supplies13.jpg" alt="Community outreach 3">
-        </div>
-      </div>
- <!-- Slide 12-->
-        <div class="ti-slide">
-          <img src="./images/supplies3a.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-  <!-- Slide 13-->
-        <div class="ti-slide">
-          <img src="./images/supplies14.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-  <!-- Slide 14-->
-        <div class="ti-slide">
-          <img src="./images/supplies15.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-    <!-- Slide 14-->
-        <div class="ti-slide">
-          <img src="./images/supplies15.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-    <!-- Slide 15-->
-        <div class="ti-slide">
-          <img src="./images/supplies16.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-    <!-- Slide 16-->
-        <div class="ti-slide">
-          <img src="./images/supplies17.jpg" alt="Community outreach 3">
-        </div>
-      </div>
-    <!-- Slide 17-->
-        <div class="ti-slide">
-          <img src="./images/supplies18.jpg" alt="Community outreach 3">
-        </div>
-      </div>
+
       <button type="button" class="ti-btn ti-prev" aria-label="Previous slide" onclick="tiMoveSlide(-1)">&#10094;</button>
       <button type="button" class="ti-btn ti-next" aria-label="Next slide" onclick="tiMoveSlide(1)">&#10095;</button>
     </div>
@@ -934,9 +861,9 @@ if ('serviceWorker' in navigator) {
       });
 
       // Mobile touch swipe support
-      track.addEventListener('touchstart', (e) => { startX = e.touches.clientX; }, { passive: true });
+      track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
       track.addEventListener('touchend', (e) => {
-        const diff = startX - e.changedTouches.clientX;
+        const diff = startX - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 40) tiMoveSlide(diff > 0 ? 1 : -1);
       }, { passive: true });
     })();
