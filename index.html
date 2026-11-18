@@ -636,17 +636,21 @@ if ('serviceWorker' in navigator) {
       padding: 40px 20px !important;
       overflow-x: hidden !important;
     }
-    #ti-photo-carousel .ti-carousel-wrapper {
-      position: relative !important;
+    #ti-photo-carousel .ti-carousel-container {
       width: 100% !important;
       max-width: 1160px !important;
       margin: 0 auto !important;
+    }
+    #ti-photo-carousel .ti-carousel-wrapper {
+      position: relative !important;
+      width: 100% !important;
       overflow: hidden !important;
       border-radius: 6px !important;
-      background: #111 !important;
+      background: #111111 !important;
     }
     #ti-photo-carousel .ti-carousel-track {
       display: flex !important;
+      align-items: center !important;
       transition: transform 0.45s ease-in-out !important;
       width: 100% !important;
       margin: 0 !important;
@@ -657,15 +661,19 @@ if ('serviceWorker' in navigator) {
       width: 100% !important;
       max-width: 100% !important;
       position: relative !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
       margin: 0 !important;
       padding: 0 !important;
+      background: #111111 !important;
     }
     #ti-photo-carousel .ti-slide img {
       display: block !important;
       width: 100% !important;
-      height: 480px !important;
-      object-fit: cover !important;
-      margin: 0 !important;
+      height: 540px !important;
+      object-fit: contain !important;
+      margin: 0 auto !important;
       padding: 0 !important;
       border: 0 !important;
     }
@@ -673,8 +681,8 @@ if ('serviceWorker' in navigator) {
       position: absolute !important;
       top: 50% !important;
       transform: translateY(-50%) !important;
-      background: rgba(0, 0, 0, 0.55) !important;
-      color: #fff !important;
+      background: rgba(0, 0, 0, 0.6) !important;
+      color: #ffffff !important;
       border: none !important;
       width: 44px !important;
       height: 44px !important;
@@ -689,7 +697,7 @@ if ('serviceWorker' in navigator) {
       transition: background 0.2s !important;
     }
     #ti-photo-carousel .ti-btn:hover {
-      background: rgba(0, 0, 0, 0.85) !important;
+      background: rgba(0, 0, 0, 0.9) !important;
     }
     #ti-photo-carousel .ti-prev {
       left: 14px !important;
@@ -697,87 +705,118 @@ if ('serviceWorker' in navigator) {
     #ti-photo-carousel .ti-next {
       right: 14px !important;
     }
-    #ti-photo-carousel .ti-dots {
-      position: absolute !important;
-      bottom: 14px !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important;
+    /* Clickable Thumbnails Strip */
+    #ti-photo-carousel .ti-thumbs {
       display: flex !important;
-      gap: 8px !important;
-      z-index: 10 !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      margin-top: 14px !important;
+      padding: 4px 0 !important;
+      width: 100% !important;
     }
-    #ti-photo-carousel .ti-dot {
-      width: 10px !important;
-      height: 10px !important;
-      border-radius: 50% !important;
-      border: none !important;
-      background: rgba(255, 255, 255, 0.5) !important;
-      cursor: pointer !important;
+    #ti-photo-carousel .ti-thumb-btn {
       padding: 0 !important;
+      margin: 0 !important;
+      border: 3px solid transparent !important;
+      border-radius: 4px !important;
+      background: #111111 !important;
+      cursor: pointer !important;
+      overflow: hidden !important;
+      opacity: 0.6 !important;
+      transition: opacity 0.2s ease, border-color 0.2s ease, transform 0.2s ease !important;
     }
-    #ti-photo-carousel .ti-dot.active {
-      background: #ffffff !important;
-      transform: scale(1.2) !important;
+    #ti-photo-carousel .ti-thumb-btn:hover {
+      opacity: 0.9 !important;
+    }
+    #ti-photo-carousel .ti-thumb-btn.active {
+      opacity: 1 !important;
+      border-color: #2196f3 !important;
+      transform: translateY(-2px) !important;
+    }
+    #ti-photo-carousel .ti-thumb-btn img {
+      display: block !important;
+      width: 88px !important;
+      height: 60px !important;
+      object-fit: cover !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
     }
     @media (max-width: 768px) {
       #ti-photo-carousel {
         padding: 24px 16px !important;
       }
       #ti-photo-carousel .ti-slide img {
-        height: 260px !important;
+        height: 300px !important;
       }
       #ti-photo-carousel .ti-btn {
         width: 36px !important;
         height: 36px !important;
         font-size: 16px !important;
       }
+      #ti-photo-carousel .ti-thumb-btn img {
+        width: 64px !important;
+        height: 44px !important;
+      }
     }
   </style>
 
-  <div class="ti-carousel-wrapper">
-    <div class="ti-carousel-track" id="tiCarouselTrack">
-      <!-- Slide 1 -->
-      <div class="ti-slide">
-        <img src="./images/2a.jpg" alt="Community outreach 1">
+  <div class="ti-carousel-container">
+    <div class="ti-carousel-wrapper">
+      <div class="ti-carousel-track" id="tiCarouselTrack">
+        <!-- Slide 1 -->
+        <div class="ti-slide">
+          <img src="./images/2a.jpg" alt="Community outreach 1">
+        </div>
+        <!-- Slide 2 -->
+        <div class="ti-slide">
+          <img src="./images/supplies1a.jpg" alt="Community outreach 2">
+        </div>
+        <!-- Slide 3 -->
+        <div class="ti-slide">
+          <img src="./images/supplies4.jpg" alt="Community outreach 3">
+        </div>
       </div>
-      <!-- Slide 2 -->
-      <div class="ti-slide">
-        <img src="./images/supplies4.jpg" alt="Community outreach 2">
-      </div>
-      <!-- Slide 3 -->
-      <div class="ti-slide">
-        <img src="./images/supplies5.jpg" alt="Community outreach 3">
-      </div>
+
+      <button type="button" class="ti-btn ti-prev" aria-label="Previous slide" onclick="tiMoveSlide(-1)">&#10094;</button>
+      <button type="button" class="ti-btn ti-next" aria-label="Next slide" onclick="tiMoveSlide(1)">&#10095;</button>
     </div>
 
-    <button type="button" class="ti-btn ti-prev" aria-label="Previous slide" onclick="tiMoveSlide(-1)">&#10094;</button>
-    <button type="button" class="ti-btn ti-next" aria-label="Next slide" onclick="tiMoveSlide(1)">&#10095;</button>
-    <div class="ti-dots" id="tiCarouselDots"></div>
+    <!-- Thumbnails are generated automatically here -->
+    <div class="ti-thumbs" id="tiCarouselThumbs"></div>
   </div>
 
   <script>
     (function () {
       const track = document.getElementById('tiCarouselTrack');
-      const dotsContainer = document.getElementById('tiCarouselDots');
+      const thumbsContainer = document.getElementById('tiCarouselThumbs');
       const slides = track.querySelectorAll('.ti-slide');
       let currentIndex = 0;
       let startX = 0;
 
-      // Create navigation dots automatically based on number of slides
-      slides.forEach((_, idx) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'ti-dot' + (idx === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
-        dot.onclick = () => tiGoToSlide(idx);
-        dotsContainer.appendChild(dot);
+      // Automatically build clickable thumbnails from your slide images
+      slides.forEach((slide, idx) => {
+        const sourceImg = slide.querySelector('img');
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'ti-thumb-btn' + (idx === 0 ? ' active' : '');
+        btn.setAttribute('aria-label', 'View image ' + (idx + 1));
+        btn.onclick = () => tiGoToSlide(idx);
+
+        const thumbImg = document.createElement('img');
+        thumbImg.src = sourceImg.src;
+        thumbImg.alt = sourceImg.alt || ('Thumbnail ' + (idx + 1));
+
+        btn.appendChild(thumbImg);
+        thumbsContainer.appendChild(btn);
       });
 
-      const dots = dotsContainer.querySelectorAll('.ti-dot');
+      const thumbButtons = thumbsContainer.querySelectorAll('.ti-thumb-btn');
 
       function updateCarousel() {
         track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
-        dots.forEach((d, idx) => d.classList.toggle('active', idx === currentIndex));
+        thumbButtons.forEach((btn, idx) => btn.classList.toggle('active', idx === currentIndex));
       }
 
       window.tiMoveSlide = function (step) {
@@ -792,15 +831,16 @@ if ('serviceWorker' in navigator) {
 
       // Auto-advance every 5 seconds
       let autoPlay = setInterval(() => tiMoveSlide(1), 5000);
-      track.parentElement.addEventListener('mouseenter', () => clearInterval(autoPlay));
-      track.parentElement.addEventListener('mouseleave', () => {
+      const container = document.querySelector('#ti-photo-carousel .ti-carousel-container');
+      container.addEventListener('mouseenter', () => clearInterval(autoPlay));
+      container.addEventListener('mouseleave', () => {
         autoPlay = setInterval(() => tiMoveSlide(1), 5000);
       });
 
       // Mobile touch swipe support
-      track.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchstart', (e) => { startX = e.touches.clientX; }, { passive: true });
       track.addEventListener('touchend', (e) => {
-        const diff = startX - e.changedTouches[0].clientX;
+        const diff = startX - e.changedTouches.clientX;
         if (Math.abs(diff) > 40) tiMoveSlide(diff > 0 ? 1 : -1);
       }, { passive: true });
     })();
