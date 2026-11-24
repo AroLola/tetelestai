@@ -678,6 +678,8 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
         if (current.indexOf(item.match) !== -1) {
           img.src = item.newSrc;
           img.srcset = item.newSrc + ', ' + item.newSrc + ' 2x, ' + item.newSrc + ' 3x';
+          img.style.maxHeight = '100px';
+          img.style.width = 'auto';
         }
       });
     });
@@ -690,6 +692,7 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
   }
 })();
 </script>
+
 
 
 </body></html>
