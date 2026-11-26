@@ -478,27 +478,8 @@ if ('serviceWorker' in navigator) {
 }
 "use strict";window.dataLayer = window.dataLayer || [], window.gtag = window.gtag || function () {window.dataLayer.push(arguments);}, gtag("consent", "default", {ad_storage: "denied",ad_user_data: "denied",ad_personalization: "denied",analytics_storage: "denied",wait_for_update: 500});</script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-layout27-Theme-publish-Theme-ed0760a1.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-_rollupPluginBabelHelpers-5804ec33.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-imageToHeaderTreatments-cbda470b.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-index-52fbaa26.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-index3-26d386ac.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-loaders-fffeeba5.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-overlayTypes-6afcb3a5.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/Carousel-d0652cc9.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/ColorSwatch-5ae2d61e.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/DynamicFontScaler-d6821741.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-dataAids-dc689f22.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-index2-30d4bb8e.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-navigationDrawer-27f5f1f5.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-searchFormLocations-c86f2a99.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/_commonjsHelpers-67085353.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/_react_commonjs-external-a1351e34.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/toPropertyKey-9bd6a336.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/_rollupPluginBabelHelpers-c06d2bc9.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/dynamicFontScaler-31729aff.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-FlyoutMenu-Component-b4b95853.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-LinkAwareComponent-0e7597ad.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-gallery3-Gallery-27a5d3e4.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-Toggle-0f009dec.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-CustomArrows-49960b5a.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-dataAids-71c78b3f.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-directionalKeyHandlers-43e11c5a.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-util-c935f491.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-wrapWithDeviceDetection-f9dc1d72.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-Hamburger-Component-8956ad4f.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-MobileFlyoutMenu-Component-cde69336.js.download"></script><script crossorigin="Anonymous" src="./about-tetelestai_files/bs-AbsLink-5de6a485.js.download"></script>
 <!--stop nav flicker-->
-<style>
-  /* 1. ABOUT PAGE DESKTOP: Stop logo box from squishing the nav menu to the right */
-  @media only screen and (min-width: 1025px) {
-    header [data-aid="HEADER_LOGO_RENDERED"],
-    header .independent-r1c2-box {
-      width: auto !important;
-      max-width: 200px !important;
-      flex: 0 0 auto !important;
-    }
-    header .independent-r1c2-box img {
-      max-height: 75px !important;
-      width: auto !important;
-    }
-    header nav[data-ux="Nav"] {
-      flex: 1 1 auto !important;
-      width: auto !important;
-      max-width: none !important;
-    }
-  }
-
-  /* 2. ABOUT PAGE DROPDOWNS: Restore padding around dropdown menu titles */
+ <style>
+  /* DROPDOWN PADDING: Keep comfortable spacing around dropdown menu titles */
   header [data-ux="Dropdown"],
   header nav ul[role="menu"] {
     padding: 12px 16px !important;
@@ -515,30 +496,21 @@ if ('serviceWorker' in navigator) {
     line-height: 1.4 !important;
   }
 
-  /* 3. ABOUT PAGE MOBILE: Force the mobile header logo (#n-6511) to stay visible */
-  @media only screen and (max-width: 1024px) {
-    header [data-aid="HEADER_LOGO_RENDERED"],
-    header [data-aid="HEADER_LOGO_RENDERED"] a,
-    header [data-aid="HEADER_LOGO_RENDERED"] div {
-      display: inline-block !important;
-      width: auto !important;
-      height: auto !important;
-      overflow: visible !important;
-    }
-    img#n-6511,
-    header [data-aid="HEADER_LOGO_IMAGE_RENDERED"] {
-      display: inline-block !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-      width: auto !important;
-      max-width: 160px !important;
-      height: auto !important;
-      max-height: 60px !important;
-      object-fit: contain !important;
-    }
+  /* STOP LANDING FLICKER & MOBILE TAB TAP FLASH */
+  header nav ul {
+    list-style: none !important;
+    margin: 0 !important;
+  }
+  [data-ux="NavigationDrawer"] ul[role="menu"] {
+    background-color: #040430 !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  [data-ux="NavigationDrawer"] a[data-toggle-ignore="true"] {
+    -webkit-tap-highlight-color: transparent !important;
+    transition: none !important;
   }
 </style>
-
  <!--end nav flicker stoppage-->
  
 </head>
