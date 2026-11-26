@@ -611,6 +611,7 @@ if ('serviceWorker' in navigator) {
 
   <!-- stop nav flickering -->
   <style>
+  /* Desktop: Prevent nav items from jumping/flickering on landing */
   @media (min-width: 1025px) {
     header nav[data-ux="Nav"] ul[data-ux="List"] > li.nav-item:not(.visible) {
       opacity: 0 !important;
@@ -618,6 +619,20 @@ if ('serviceWorker' in navigator) {
     header nav[data-ux="Nav"] ul[data-ux="List"] > li.nav-item.visible {
       opacity: 1 !important;
       transition: opacity 0.15s ease-in !important;
+    }
+  }
+
+  /* Mobile: Stop menu drawer flicker when tapping accordion tabs */
+  @media (max-width: 1024px) {
+    [data-ux="NavigationDrawer"],
+    [data-ux="NavigationDrawer"] * {
+      -webkit-tap-highlight-color: transparent !important;
+      backface-visibility: hidden !important;
+      -webkit-backface-visibility: hidden !important;
+    }
+    [data-ux="NavigationDrawer"] ul[role="menu"] {
+      transition: none !important;
+      animation: none !important;
     }
   }
 </style>
