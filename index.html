@@ -609,6 +609,19 @@ if ('serviceWorker' in navigator) {
   }
 </style>
 
+  <!-- stop nav flickering -->
+  <style>
+  @media (min-width: 1025px) {
+    header nav[data-ux="Nav"] ul[data-ux="List"] > li.nav-item:not(.visible) {
+      opacity: 0 !important;
+    }
+    header nav[data-ux="Nav"] ul[data-ux="List"] > li.nav-item.visible {
+      opacity: 1 !important;
+      transition: opacity 0.15s ease-in !important;
+    }
+  }
+</style>
+
 
 </head>
 <body class="x  x-fonts-cinzel x-fonts-lato x-fonts-raleway"><div id="layout-7-e-12805-e-e-110-4849-acdf-189-fcbc-8-cd-0-f" class="layout layout-layout layout-layout-layout-27 locale-en-IN lang-en"><div data-ux="Page" id="page-146341" class="x-el x-el-div x-el c1-1 c1-2 c1-3 c1-4 c1-5 c1-6 c1-7 c1-8 c1-9 c1-a c1-b c1-c c1-d c1-e c1-f c1-g c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><div data-ux="Block" class="x-el x-el-div page-inner c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><div id="ea55f112-b53c-458f-9f07-fecca956ed54" class="widget widget-header widget-header-header-9"><div data-ux="Header" role="main" data-aid="HEADER_WIDGET" id="n-146342" class="x-el x-el-div x-el x-el c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g c1-1 c1-2 c1-h c1-b c1-c c1-d c1-e c1-f c1-g c1-1 c1-2 c1-b c1-c c1-d c1-e c1-f c1-g"><div> <div id="freemium-ad-146344"></div>
