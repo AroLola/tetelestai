@@ -1121,5 +1121,15 @@ var t=document.createElement("script");t.type="text/javascript",t.addEventListen
   })();
 </script>
 
+<script>
+  document.addEventListener('click', function(e) {
+    var link = e.target.closest('[data-ux="NavigationDrawer"] a[href]');
+    if (link && link.getAttribute('href') && !link.getAttribute('href').endsWith('#')) {
+      var cover = document.createElement('div');
+      cover.style.cssText = 'position:fixed;inset:0;background:#040430;z-index:2147483647;pointer-events:none;';
+      document.body.appendChild(cover);
+    }
+  }, true);
+</script>
 
 </body></html>
